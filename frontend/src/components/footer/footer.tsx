@@ -43,7 +43,10 @@ function Footer() {
           <img src="/assets/images/logos/logoWhite.webp" alt="Deewan for Digital Learning Development" />
         </Link>
 
-        <p className="dw-footer-copyright">© 2026 Deewan for Digital Learning Development</p>
+        <div className="dw-footer-legal">
+          <p className="dw-footer-copyright">© 2026 Deewan for Digital Learning Development</p>
+          <p className="dw-footer-copyright">A brand of Deewan Europe GmbH, Germany.</p>
+        </div>
 
         <ul className="dw-footer-socials">
           {socials.map(({ label, href, icon }) => (
