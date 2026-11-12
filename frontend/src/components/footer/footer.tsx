@@ -45,7 +45,6 @@ function Footer() {
         <Link to="/" className="dw-footer-logo" aria-label={t('footer.homeLink')}>
           <img src="/assets/images/logos/logoWhite.webp" alt={t('common.brand')} />
         </Link>
-        <p className="dw-footer-copyright">{t('footer.copyright')}</p>
         <div className="dw-footer-legal">
           <p className="dw-footer-copyright">{t('footer.copyright')}</p>
           <p className="dw-footer-copyright">{t('footer.copyright2')}</p>

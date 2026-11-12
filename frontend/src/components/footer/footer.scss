@@ -31,11 +31,18 @@
     }
   }
 
+  // both legal lines share the middle column of the bar
+  &-legal {
+    display: grid;
+    gap: 6px;
+    text-align: center;
+  }
+
   &-copyright {
     margin: 0;
     color: $off-white;
     font-weight: 500;
-    font-size: 12px;
+    font-size: 15px;
     line-height: 16px;
   }
 
@@ -64,8 +71,8 @@
     }
 
     svg {
-      width: 18px;
-      height: 18px;
+      width: 22px;
+      height: 22px;
     }
   }
 }
