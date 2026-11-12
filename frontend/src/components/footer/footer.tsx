@@ -48,6 +48,9 @@ function Footer() {
         <div className="dw-footer-legal">
           <p className="dw-footer-copyright">{t('footer.copyright')}</p>
           <p className="dw-footer-copyright">{t('footer.copyright2')}</p>
+          <p className="dw-footer-copyright">
+            <Link to="/impressum" className="dw-footer-impressum">{t('footer.impressum')}</Link>
+          </p>
         </div>
         <ul className="dw-footer-socials">
           {socials.map(({ label, href, icon }) => (
