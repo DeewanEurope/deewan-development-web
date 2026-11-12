@@ -2,7 +2,7 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
 import en from './locales/en.json'
-import ar from './locales/ar.json'
+// import ar from './locales/ar.json' // re-enable together with the Arabic entry below
 import de from './locales/de.json'
 
 // To add a language: add it here, add it to scripts/translate.ts, then run `npm run translate:<code>`
