@@ -17,9 +17,10 @@ export type SocialProject = {
   platforms: Platform[]
 }
 
+// Text values are translation keys: the English copy lives in src/i18n/locales/en.json
 export const socialHero = {
-  label: 'Our Portfolio',
-  title: 'Our Social Media Portfolio',
+  label: 'social.hero.label',
+  title: 'social.hero.title',
 }
 
 export const platformIcons: Record<PlatformName, string> = {
@@ -38,19 +39,18 @@ const platforms = (links: Partial<Record<PlatformName, string>> = {}): Platform[
 export const socialProjects: SocialProject[] = [
   {
     id: 'institute',
-    category: 'Education & Language Learning',
-    name: 'Deewan Institute for Languages and Cultural Studies',
-    description:
-      'We manage digital content that showcases Deewan Institute’s Arabic language programs, educational resources, cultural activities, and community events, helping connect learners with the institute.',
+    category: 'social.institute.category',
+    name: 'social.institute.name',
+    description: 'social.institute.description',
     image: `${art}/institute-social.webp`,
     services: [
-      'Social Media Posts',
-      'Stories',
-      'Reels',
-      'Promotional Campaigns',
-      'Paid Ads',
-      'Event Promotion',
-      'Copywriting',
+      'social.service.posts',
+      'social.service.stories',
+      'social.service.reels',
+      'social.service.campaigns',
+      'social.service.paidAds',
+      'social.service.events',
+      'social.service.copywriting',
     ],
     platforms: platforms(
       {
@@ -64,19 +64,18 @@ export const socialProjects: SocialProject[] = [
   },
   {
     id: 'tourism',
-    category: 'Tourism & Cultural Experiences',
-    name: 'Deewan Tourism',
-    description:
-      'We create digital content that highlights Jordan’s cultural heritage, trips, hiking experiences, accommodation, and local activities, inspiring travelers to explore the country through authentic experiences.',
+    category: 'social.tourism.category',
+    name: 'social.tourism.name',
+    description: 'social.tourism.description',
     image: `${art}/torism-social.webp`,
     services: [
-      'Social Media Posts',
-      'Stories',
-      'Reels & Videos',
-      'Trip Promotion',
-      'Paid Ads',
-      'Event Promotion',
-      'Photography & Visuals',
+      'social.service.posts',
+      'social.service.stories',
+      'social.service.reelsVideos',
+      'social.service.trips',
+      'social.service.paidAds',
+      'social.service.events',
+      'social.service.photography',
     ],
     platforms: platforms(
       {
@@ -89,19 +88,18 @@ export const socialProjects: SocialProject[] = [
   },
   {
     id: 'development',
-    category: 'IT & Digital Solutions',
-    name: 'Deewan Development',
-    description:
-      'We develop social media content that communicates Deewan Development’s technology services, software solutions, and digital capabilities, making technical concepts accessible to businesses and potential clients.',
+    category: 'social.development.category',
+    name: 'social.development.name',
+    description: 'social.development.description',
     image: `${art}/development-social.webp`,
     services: [
-      'Educational Posts',
-      'Stories',
-      'Reels & Videos',
-      'Service Promotion',
-      'Paid Ads',
-      'Brand Awareness',
-      'Copywriting',
+      'social.service.educational',
+      'social.service.stories',
+      'social.service.reelsVideos',
+      'social.service.servicePromotion',
+      'social.service.paidAds',
+      'social.service.brandAwareness',
+      'social.service.copywriting',
     ],
     platforms: platforms({
       Instagram: 'https://www.instagram.com/deewan_for_digital_learning/',
@@ -112,19 +110,18 @@ export const socialProjects: SocialProject[] = [
   },
   {
     id: 'bookshop',
-    category: 'Books & Retail',
-    name: 'Deewan Bookshop',
-    description:
-      'We create social media content that showcases books, reading recommendations, new arrivals, and bookshop updates, encouraging readers to discover titles and engage with the bookshop community.',
+    category: 'social.bookshop.category',
+    name: 'social.bookshop.name',
+    description: 'social.bookshop.description',
     image: `${art}/bookshop-social.webp`,
     services: [
-      'Book Promotion Posts',
-      'Stories',
-      'Reels',
-      'Product Promotion',
-      'Paid Ads',
-      'Reading Recommendations',
-      'Campaign Content',
+      'social.service.bookPosts',
+      'social.service.stories',
+      'social.service.reels',
+      'social.service.products',
+      'social.service.paidAds',
+      'social.service.recommendations',
+      'social.service.campaignContent',
     ],
     platforms: platforms({
       Instagram: 'https://www.instagram.com/deewanbookshop/',

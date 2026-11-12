@@ -283,12 +283,13 @@ $design-offset: 145px;
 
   &-text {
     max-width: 900px;
-    margin: 17px 0 0 12.18%; // 142 of 1166
+    margin-block: 17px 0;
+    margin-inline: 12.18% 0; // 142 of 1166
     color: $white;
     font-family: $font-sans;
     font-size: 20px;
     line-height: 24px;
-    text-align: left;
+    text-align: start;
   }
 
   &-project {
@@ -318,7 +319,7 @@ $design-offset: 145px;
     font-weight: 700;
     font-size: clamp(26px, 3.5vw, 45px);
     line-height: 50px;
-    text-align: left;
+    text-align: start;
   }
 
   @include tablet {

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { FormEvent, ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import LottieGlobe from '../../components/lottieGlobe/lottieGlobe'
 import SplitWords from '../../components/splitWords/splitWords'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
@@ -8,7 +9,7 @@ import './contact.scss'
 
 // empty in dev: requests go to /api on the Vite server, which proxies them to the backend
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? ''
-const FALLBACK_ERROR = 'Something went wrong. Please try again later.'
+const FALLBACK_ERROR = 'contact.error'
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
@@ -30,21 +31,23 @@ const icons: Record<string, ReactNode> = {
   ),
 }
 
+// label and plain values are translation keys
 const details = [
-  { icon: 'email', label: 'Email', value: 'project@deewandevelopment.com', href: 'mailto:project@deewandevelopment.com' },
-  { icon: 'phone', label: 'Phone Number', value: '(962) 7-7820-2081', href: 'tel:+962778202081' },
-  { icon: 'location', label: 'Location', value: 'Amman, Jordan' },
+  { icon: 'email', label: 'contact.email', value: 'project@deewandevelopment.com', href: 'mailto:project@deewandevelopment.com' },
+  { icon: 'phone', label: 'contact.phone', value: '(962) 7-7820-2083', href: 'tel:+962778202083' },
+  { icon: 'location', label: 'contact.location', value: 'contact.locationValue', translate: true },
 ]
 
 function Contact() {
+  const { t, i18n } = useTranslation()
   const pageRef = useRef<HTMLDivElement>(null)
   const [status, setStatus] = useState<Status>('idle')
   const [errorMessage, setErrorMessage] = useState('')
   useScrollReveal(pageRef)
 
   useEffect(() => {
-    document.title = 'Contact Us | Deewan Development'
-  }, [])
+    document.title = t('meta.title.contact')
+  }, [t])
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -67,14 +70,14 @@ function Contact() {
       })
       const result = await response.json().catch(() => ({}))
 
-      if (!response.ok) throw new Error(result.error ?? FALLBACK_ERROR)
+      if (!response.ok) throw new Error(result.error ?? t(FALLBACK_ERROR))
 
       setStatus('sent')
       form.reset()
     } catch (err) {
       setStatus('error')
       // fetch itself throws a TypeError when the server can't be reached
-      setErrorMessage(err instanceof Error && !(err instanceof TypeError) ? err.message : FALLBACK_ERROR)
+      setErrorMessage(err instanceof Error && !(err instanceof TypeError) ? err.message : t(FALLBACK_ERROR))
     }
   }
 
@@ -90,25 +93,25 @@ function Contact() {
       <section className="dw-container contact-body">
         <div className="contact-info">
           <h1 className="contact-title" data-reveal="words">
-            <SplitWords text="Initiate Project" />
+            <SplitWords text={t('contact.title')} />
           </h1>
           <p className="contact-text" data-reveal="up">
-            Ready to accelerate your digital transformation? Our technology experts are ready to discuss your
-            vision and develop a roadmap tailored to your business.
+            {t('contact.text')}
           </p>
 
           <ul className="contact-details">
-            {details.map(({ icon, label, value, href }) => (
+            {details.map(({ icon, label, value, href, translate }) => (
               <li key={label} className="contact-detail" data-reveal="slide">
                 <span className="contact-detail-icon">{icons[icon]}</span>
                 <span className="contact-detail-text">
-                  <span className="contact-detail-label">{label}</span>
+                  <span className="contact-detail-label">{t(label)}</span>
                   {href ? (
-                    <a className="contact-detail-value" href={href}>
+                    // email and phone always read left to right, even on the Arabic page
+                    <a className="contact-detail-value" href={href} dir="ltr">
                       {value}
                     </a>
                   ) : (
-                    <span className="contact-detail-value">{value}</span>
+                    <span className="contact-detail-value">{translate ? t(value) : value}</span>
                   )}
                 </span>
               </li>
@@ -120,16 +123,16 @@ function Contact() {
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="contact-row">
               <label className="contact-field">
-                <span className="contact-label">Full Name</span>
-                <input className="contact-input" type="text" name="fullName" placeholder="John Doe" autoComplete="name" required />
+                <span className="contact-label">{t('contact.fullName')}</span>
+                <input className="contact-input" type="text" name="fullName" placeholder={t('contact.fullNamePlaceholder')} autoComplete="name" required />
               </label>
               <label className="contact-field">
-                <span className="contact-label">Work Email</span>
+                <span className="contact-label">{t('contact.workEmail')}</span>
                 <input
                   className="contact-input"
                   type="email"
                   name="email"
-                  placeholder="john@company.com"
+                  placeholder={t('contact.emailPlaceholder')}
                   autoComplete="email"
                   required
                 />
@@ -137,40 +140,41 @@ function Contact() {
             </div>
 
             <label className="contact-field">
-              <span className="contact-label">Interested Service</span>
+              <span className="contact-label">{t('contact.service')}</span>
               <span className="contact-select">
                 <select className="contact-input" name="service" defaultValue="">
                   <option value="" disabled>
-                    Choose a service
+                    {t('contact.chooseService')}
                   </option>
+                  {/* the value stays in English, so the enquiry email reads the same whatever the visitor's language */}
                   {offers.map(({ id, title }) => (
-                    <option key={id} value={title}>
-                      {title}
+                    <option key={id} value={i18n.getFixedT('en')(title)}>
+                      {t(title)}
                     </option>
                   ))}
-                  <option value="Other">Other</option>
+                  <option value="Other">{t('contact.other')}</option>
                 </select>
               </span>
             </label>
 
             <label className="contact-field">
-              <span className="contact-label">Message</span>
+              <span className="contact-label">{t('contact.message')}</span>
               <textarea
                 className="contact-input contact-textarea"
                 name="message"
                 rows={4}
-                placeholder="Tell us about your project requirements..."
+                placeholder={t('contact.messagePlaceholder')}
                 required
               />
             </label>
 
             <div className="contact-submit">
               <button type="submit" className="contact-button" disabled={status === 'sending'}>
-                {status === 'sending' ? 'Sending...' : 'Send Inquiry'}
+                {t(status === 'sending' ? 'contact.sending' : 'contact.send')}
               </button>
 
               <p className={`contact-status contact-status-${status}`} role="status" aria-live="polite">
-                {status === 'sent' && "Thanks! Your message has been sent. We'll be in touch soon."}
+                {status === 'sent' && t('contact.sent')}
                 {status === 'error' && errorMessage}
               </p>
             </div>

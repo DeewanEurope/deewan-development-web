@@ -1,17 +1,19 @@
+import { useTranslation } from 'react-i18next'
 import Button from '../button/button'
 import './notFound.scss'
 
 function NotFound() {
+  const { t } = useTranslation()
+
   return (
     <section className="dw-not-found dw-container">
       <p className="dw-not-found-code">404</p>
-      <h1 className="dw-not-found-heading">Page Not Found</h1>
+      <h1 className="dw-not-found-heading">{t('notFound.heading')}</h1>
       <p className="dw-not-found-description">
-        The page you're looking for doesn't exist or may have been moved. Let's get you back on
-        track.
+        {t('notFound.description')}
       </p>
       <Button to="/" variant="teal">
-        Back to Home
+        {t('notFound.back')}
       </Button>
     </section>
   )

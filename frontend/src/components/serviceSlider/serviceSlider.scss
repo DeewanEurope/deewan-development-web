@@ -212,3 +212,31 @@
     }
   }
 }
+
+html[lang="ar"] {
+  .dw-slider {
+    &-number {
+      text-align: right;
+      padding-right: calc(51 * var(--k));
+    }
+
+    // &-title {
+    //   padding-left: 0;
+    //   padding-right: calc(58 * var(--k));
+    // }
+
+    // &-more {
+    //   right: auto;
+    //   left: calc(30 * var(--k));
+    // }
+
+    &-slide:nth-child(even) &-number {
+      translate: calc(-7 * var(--k)) calc(-16 * var(--k));
+    }
+
+    // &-slide:nth-child(even) &-more {
+    //   right: auto;
+    //   left: calc(26 * var(--k));
+    // }
+  }
+}

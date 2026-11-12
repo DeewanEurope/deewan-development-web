@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import type { KeyboardEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import Button from '../button/button'
+import LanguageSwitcher from '../languageSwitcher/languageSwitcher'
 import Scribble from '../scribble/scribble'
 import { drawScribble, eraseScribble } from '../../lib/scribble'
 import { gsap } from '../../lib/gsap'
@@ -10,26 +12,27 @@ import './navbar.scss'
 type SubItem = { to?: string; label: string }
 type NavItem = { to: string; label: string; children?: SubItem[] }
 
-// a sub-item without `to` is shown as "Soon" until its page exists
+// labels are translation keys; a sub-item without `to` is shown as "Soon" until its page exists
 const navItems: NavItem[] = [
-  { to: '/', label: 'Home' },
-  { to: '/about', label: 'About Us' },
+  { to: '/', label: 'nav.home' },
+  { to: '/about', label: 'nav.about' },
   {
     to: '/portfolio',
-    label: 'Our Portfolio',
+    label: 'nav.portfolio',
     children: [
-      { to: '/portfolio', label: 'Projects' },
-      { to: '/portfolio/social-media', label: 'Social Media' },
-      { label: 'UI/UX' },
+      { to: '/portfolio', label: 'nav.projects' },
+      { to: '/portfolio/social-media', label: 'nav.socialMedia' },
+      { label: 'nav.uiux' },
     ],
   },
-  { to: '/offer', label: 'What We Offer' },
-  { to: '/contact', label: 'Contact Us' },
+  { to: '/offer', label: 'nav.offer' },
+  { to: '/contact', label: 'nav.contact' },
 ]
 
 const DROP_CLOSE_DELAY = 180
 
 function Navbar() {
+  const { t } = useTranslation()
   const { pathname } = useLocation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
@@ -137,10 +140,10 @@ function Navbar() {
       <header className={`dw-header${isScrolled ? ' is-scrolled' : ''}`}>
         <div className="dw-header-bar dw-container">
           <Link to="/" className="dw-header-logo" onClick={closeMenu}>
-            <img src="/assets/images/logos/logo.png" alt="Deewan for Digital Learning Development" />
+            <img src="/assets/images/logos/logo.png" alt={t('common.brand')} />
           </Link>
 
-          <nav className="dw-header-nav" aria-label="Main">
+          <nav className="dw-header-nav" aria-label={t('nav.main')}>
             <ul className="dw-header-list">
               {navItems.map(({ to, label, children }, index) => {
                 const isActive = index === activeIndex
@@ -153,7 +156,7 @@ function Navbar() {
                         className={`dw-header-link${isActive ? ' is-active' : ''}`}
                         aria-current={isActive ? 'page' : undefined}
                       >
-                        {faces(label, index)}
+                        {faces(t(label), index)}
                       </Link>
                     </li>
                   )
@@ -176,7 +179,7 @@ function Navbar() {
                       aria-controls="dw-drop-portfolio"
                       onClick={() => setIsDropOpen((open) => !open)}
                     >
-                      {faces(label, index)}
+                      {faces(t(label), index)}
                       <svg className="dw-header-caret" viewBox="0 0 12 8" aria-hidden="true">
                         <path d="m1 1.5 5 5 5-5" />
                       </svg>
@@ -194,13 +197,13 @@ function Navbar() {
                               onClick={() => setIsDropOpen(false)}
                             >
                               <span className="dw-drop-dot" aria-hidden="true" />
-                              {child.label}
+                              {t(child.label)}
                             </Link>
                           ) : (
                             <span className="dw-drop-link is-soon" aria-disabled="true">
                               <span className="dw-drop-dot" aria-hidden="true" />
-                              {child.label}
-                              <span className="dw-drop-soon">Soon</span>
+                              {t(child.label)}
+                              <span className="dw-drop-soon">{t('nav.soon')}</span>
                             </span>
                           )}
                         </li>
@@ -212,14 +215,17 @@ function Navbar() {
             </ul>
           </nav>
 
-          <Button to="/contact" variant="soft" className="dw-header-cta">
-            Get Started
-          </Button>
+          <div className="dw-header-end">
+            <LanguageSwitcher className="dw-header-lang" />
+            <Button to="/contact" variant="soft" className="dw-header-cta">
+              {t('nav.getStarted')}
+            </Button>
+          </div>
 
           <button
             type="button"
             className={`dw-header-toggle${isMenuOpen ? ' is-open' : ''}`}
-            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-label={t(isMenuOpen ? 'nav.closeMenu' : 'nav.openMenu')}
             aria-expanded={isMenuOpen}
             onClick={() => setIsMenuOpen((open) => !open)}
           >
@@ -237,7 +243,7 @@ function Navbar() {
               {children ? (
                 <>
                   <span className={`dw-overlay-group${index === activeIndex ? ' is-active' : ''}`}>
-                    {label}
+                    {t(label)}
                   </span>
                   <ul className="dw-overlay-sub">
                     {children.map((child, childIndex) => (
@@ -250,13 +256,13 @@ function Navbar() {
                             tabIndex={isMenuOpen ? 0 : -1}
                           >
                             <span className="dw-drop-dot" aria-hidden="true" />
-                            {child.label}
+                            {t(child.label)}
                           </Link>
                         ) : (
                           <span className="is-soon" aria-disabled="true">
                             <span className="dw-drop-dot" aria-hidden="true" />
-                            {child.label}
-                            <span className="dw-drop-soon">Soon</span>
+                            {t(child.label)}
+                            <span className="dw-drop-soon">{t('nav.soon')}</span>
                           </span>
                         )}
                       </li>
@@ -270,14 +276,14 @@ function Navbar() {
                   onClick={closeMenu}
                   tabIndex={isMenuOpen ? 0 : -1}
                 >
-                  {label}
+                  {t(label)}
                 </Link>
               )}
             </li>
           ))}
         </ul>
         <Button to="/contact" variant="amber" onClick={closeMenu}>
-          Get Started
+          {t('nav.getStarted')}
         </Button>
       </div>
     </>

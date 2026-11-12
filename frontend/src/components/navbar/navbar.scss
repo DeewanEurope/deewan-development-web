@@ -35,7 +35,7 @@ $shrink: 0.84;
 
     .dw-header-logo,
     .dw-header-nav,
-    .dw-header-cta,
+    .dw-header-end,
     .dw-header-toggle {
       scale: $shrink;
     }
@@ -60,9 +60,28 @@ $shrink: 0.84;
   // each part scales around the side it is anchored to, so nothing drifts away from the edges
   &-logo,
   &-nav,
-  &-cta,
+  &-end,
   &-toggle {
     transition: scale 0.35s ease;
+  }
+
+  // language picker + "Get Started"; on phones only the picker stays, next to the menu button
+  &-end {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 14px;
+    transform-origin: right center;
+
+    @include navbar-collapse {
+      margin-inline-start: auto;
+    }
+  }
+
+  &-lang {
+    @include navbar-collapse {
+      height: 38px;
+    }
   }
 
   &-logo {
@@ -197,7 +216,9 @@ $shrink: 0.84;
   &-cta {
     flex: none;
 
-    @include navbar-collapse {
+    // below 1200px the bar runs out of room once the language picker is in (the Arabic and German
+    // labels are the widest); "Contact Us" in the nav leads to the same page
+    @include below(1200px) {
       display: none;
     }
   }
@@ -211,8 +232,12 @@ $shrink: 0.84;
     width: 44px;
     height: 44px;
     padding: 0;
-    margin-left: auto;
+    margin-inline-start: auto;
     border: 0;
+
+    @include navbar-collapse {
+      margin-inline-start: 0;
+    }
     background: none;
     z-index: 1001;
     @include focus-ring($primary-color);

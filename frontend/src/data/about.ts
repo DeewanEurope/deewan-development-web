@@ -1,54 +1,71 @@
-// Everything the About page says. Edit the copy here, the page just renders it.
+// What the About page shows. Text values are translation keys: the English copy lives in
+// src/i18n/locales/en.json, then `npm run translate:all` updates Arabic and German.
 import type { Service } from '../components/serviceRing/serviceRing'
 
 const images = '/assets/images/about'
 const teamPhotos = '/assets/images/team'
 
 export const aboutHero = {
-  label: 'About Us',
-  title: 'Building the Future of Digital Learning',
-  highlight: ['Digital'], // words shown in amber
+  label: 'about.hero.label',
+  title: 'about.hero.title', // <em> words are amber
 }
 
 export const aboutWho = {
-  label: 'Who We Are',
-  title: 'Technology That Solves Real Problems',
-  paragraphs: [
-    'At Deewan, we believe technology should be purposeful, accessible, and built around the people who use it.',
-    'Every organization has different goals, audiences, and challenges. That is why we take a collaborative approach to every project—starting with understanding what our clients need and then identifying the right combination of technology, design, and digital strategy.',
-    'Whether it is a new website, mobile application, stronger online presence, digital marketing campaign, or e-learning experience, our team works from concept to delivery to create solutions that are both functional and impactful.',
-  ],
+  label: 'about.who.label',
+  title: 'about.who.title',
+  paragraphs: ['about.who.p1', 'about.who.p2', 'about.who.p3'],
 }
 
 // "to" points at the matching section on the Offer page ]
 export const aboutServices = {
-  label: 'Our Services',
-  title: 'What We Do',
+  label: 'about.services.label',
+  title: 'about.services.title',
   services: [
-    { title: 'Web Design & Development', image: `${images}/our-service-1.webp`, to: '/offer#web' },
-    { title: 'Mobile App Design', image: `${images}/our-services-2.webp`, to: '/offer#mobile' },
-    { title: 'UI/UX Design', image: `${images}/our-services-4.webp`, to: '/offer#ux' },
-    { title: 'Social Media Management', image: `${images}/our-services-3.webp`, to: '/offer#social' },
-    { title: 'Digital Marketing', image: `${images}/our-services-6.webp`, to: '/offer#marketing' },
+    { title: 'service.web', image: `${images}/our-service-1.webp`, to: '/offer#web' },
+    { title: 'service.mobile', image: `${images}/our-services-2.webp`, to: '/offer#mobile' },
+    { title: 'service.ux', image: `${images}/our-services-4.webp`, to: '/offer#ux' },
+    { title: 'service.social', image: `${images}/our-services-3.webp`, to: '/offer#social' },
+    { title: 'service.marketing', image: `${images}/our-services-6.webp`, to: '/offer#marketing' },
   ] satisfies Service[],
 }
 
 export type TeamMember = {
-  name: string
-  role: string
+  name: string // translation key
+  role: string // translation key
   photo?: string // leave out and a placeholder is shown
 }
 
 const members: TeamMember[] = [
-  { name: 'Saba Saed', role: 'Head of Product Design & Technology', photo: `${teamPhotos}/saba.webp` },
-  { name: 'Qutaibh Subeh', role: 'Full Stack Developer and Trainer', photo: `${teamPhotos}/qutaiba.webp` },
-  { name: 'Rula Tbakhi', role: 'Media and Digital Marketing Specialist', photo: `${teamPhotos}/rula2.jpg` },
+  { name: 'about.team.saba.name', role: 'about.team.saba', photo: `${teamPhotos}/saba.webp` },
+  { name: 'about.team.qutaibh.name', role: 'about.team.qutaibh', photo: `${teamPhotos}/qutaiba.webp` },
+  { name: 'about.team.rula.name', role: 'about.team.rula', photo: `${teamPhotos}/rula.webp` },
+  { name: 'about.team.aya.name', role: 'about.team.aya', photo: `${teamPhotos}/aya.webp` },
+
 ]
 
 export const aboutTeam = {
-  label: 'Our Team',
-  title: 'Meet the Team Behind Deewan',
-  description:
-    'Behind every digital experience we create is a team that brings together technology, creativity, design, and strategy. Each member brings a different perspective and area of expertise, but we share one goal: creating digital experiences that are functional, engaging, and built around real needs. From the first idea and design concept to development, launch, and digital growth, our team works together to make every project meaningful and impactful.',
+  label: 'about.team.label',
+  title: 'about.team.title',
+  description: 'about.team.description',
   members,
+}
+
+// The founder spotlight above the team grid
+export const theManager = {
+  label: 'about.manager.label',
+  title: 'about.manager.title',
+  name: 'about.manager.name',
+  role: 'about.manager.role',
+  roleShort: 'about.manager.roleShort',
+  paragraphs: ['about.manager.p1', 'about.manager.p2'],
+  expertiseLabel: 'about.manager.expertise',
+  expertise: [
+    'about.manager.skill1',
+    'about.manager.skill2',
+    'about.manager.skill3',
+    'about.manager.skill4',
+    'about.manager.skill5',
+    'about.manager.skill6',
+  ],
+  photo: `${teamPhotos}/manager.webp`,
 }

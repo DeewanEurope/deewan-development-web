@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import type { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import PillLabel from '../pillLabel/pillLabel'
 import SplitWords from '../splitWords/splitWords'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
@@ -42,6 +43,7 @@ function Step({ side, title, children }: StepProps) {
 }
 
 function CaseStudy({ project }: { project: Project }) {
+  const { t } = useTranslation()
   const ref = useRef<HTMLElement>(null)
   const { caseStudy } = project
   useScrollReveal(ref)
@@ -71,39 +73,39 @@ function CaseStudy({ project }: { project: Project }) {
     <section ref={ref} id="case-study" className="cs" aria-labelledby="cs-title">
       <div className="dw-container">
         <header className="cs-heading">
-          <PillLabel data-reveal="zoom">{caseStudyHeading.label}</PillLabel>
+          <PillLabel data-reveal="zoom">{t(caseStudyHeading.label)}</PillLabel>
           <h2 id="cs-title" data-reveal="words">
-            <SplitWords text={caseStudyHeading.title} />
+            <SplitWords text={t(caseStudyHeading.title)} />
           </h2>
           <p className="cs-name" data-reveal="up">
-            {project.name}
+            {t(project.name)}
           </p>
         </header>
 
         <dl className="cs-meta" data-reveal="zoom">
           <div>
-            <dt>Duration</dt>
-            <dd>{caseStudy.duration}</dd>
+            <dt>{t('caseStudy.duration')}</dt>
+            <dd>{t(caseStudy.duration)}</dd>
           </div>
           <div>
-            <dt>Service</dt>
-            <dd>{caseStudy.service}</dd>
+            <dt>{t('caseStudy.service')}</dt>
+            <dd>{t(caseStudy.service)}</dd>
           </div>
           <div>
-            <dt>Industry</dt>
-            <dd>{caseStudy.industry}</dd>
+            <dt>{t('caseStudy.industry')}</dt>
+            <dd>{t(caseStudy.industry)}</dd>
           </div>
         </dl>
 
         <div className="cs-steps">
-          <Step side="left" title="What is it?">
-            {caseStudy.what}
+          <Step side="left" title={t('caseStudy.what')}>
+            {t(caseStudy.what)}
           </Step>
-          <Step side="right" title="The Challenge">
-            {caseStudy.challenge}
+          <Step side="right" title={t('caseStudy.challenge')}>
+            {t(caseStudy.challenge)}
           </Step>
-          <Step side="left" title="The Solution">
-            {caseStudy.solution}
+          <Step side="left" title={t('caseStudy.solution')}>
+            {t(caseStudy.solution)}
           </Step>
         </div>
 
@@ -117,7 +119,7 @@ function CaseStudy({ project }: { project: Project }) {
                   controls
                   playsInline
                   preload="metadata"
-                  aria-label={`${project.name} walkthrough video`}
+                  aria-label={t('caseStudy.video', { name: t(project.name) })}
                 />
               ) : (
                 <img className="cs-laptop-fallback" src={project.logo} alt="" />
@@ -130,7 +132,7 @@ function CaseStudy({ project }: { project: Project }) {
         {caseStudy.link && (
           <p className="cs-link" data-reveal="up">
             <a href={caseStudy.link.href} target="_blank" rel="noreferrer">
-              {caseStudy.link.label}
+              {t(caseStudy.link.label)}
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <path d="M7 17 17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -140,7 +142,7 @@ function CaseStudy({ project }: { project: Project }) {
 
         <div className="cs-step cs-step-right cs-stack-step">
           <article className="cs-card cs-stack" data-reveal="left">
-            <h3>Technology Stack</h3>
+            <h3>{t('caseStudy.stack')}</h3>
             <ul>
               {caseStudy.stack.map((tech) => (
                 <li key={tech}>

@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import RoughArrow from '../roughArrow/roughArrow'
 import './serviceSlider.scss'
 
 export type ServiceCard = {
-  // one string per line, so the big title breaks exactly where the design does
-  title: string[]
+  // translation key; a "\n" in the text breaks the big title exactly where the design does
+  title: string
   to: string
 }
 
@@ -19,6 +20,7 @@ const SWIPE = 40
 
 // Numbered tiles, two to a page on desktop and one on phones. The dots (or a swipe) turn the page.
 function ServiceSlider({ cards }: ServiceSliderProps) {
+  const { t, i18n } = useTranslation()
   const [perPage, setPerPage] = useState(() => (window.matchMedia(COMPACT).matches ? 1 : 2))
   const [page, setPage] = useState(0)
   const touchStart = useRef<number | null>(null)
@@ -37,15 +39,18 @@ function ServiceSlider({ cards }: ServiceSliderProps) {
 
   const goTo = (next: number) => setPage(Math.min(pages - 1, Math.max(0, next)))
 
+  // +1 when "next" lies to the right on screen; in RTL (Arabic) the later pages are to the left
+  const forward = i18n.dir() === 'rtl' ? -1 : 1
+
   return (
     <div
       className="dw-slider"
       role="region"
       aria-roledescription="carousel"
-      aria-label="Our core competencies"
+      aria-label={t('home.services.carousel')}
       onKeyDown={(event) => {
-        if (event.key === 'ArrowRight') goTo(page + 1)
-        if (event.key === 'ArrowLeft') goTo(page - 1)
+        if (event.key === 'ArrowRight') goTo(page + forward)
+        if (event.key === 'ArrowLeft') goTo(page - forward)
       }}
       onTouchStart={(event) => {
         touchStart.current = event.touches[0].clientX
@@ -54,7 +59,8 @@ function ServiceSlider({ cards }: ServiceSliderProps) {
         if (touchStart.current === null) return
         const delta = event.changedTouches[0].clientX - touchStart.current
         touchStart.current = null
-        if (Math.abs(delta) > SWIPE) goTo(page + (delta < 0 ? 1 : -1))
+        // swiping the cards left brings in what lies to the right
+        if (Math.abs(delta) > SWIPE) goTo(page + (delta < 0 ? forward : -forward))
       }}
     >
       <div className="dw-slider-viewport">
@@ -63,19 +69,19 @@ function ServiceSlider({ cards }: ServiceSliderProps) {
             const onPage = Math.floor(index / perPage) === page
 
             return (
-              <li key={title.join(' ')} className="dw-slider-slide" inert={!onPage}>
+              <li key={title} className="dw-slider-slide" inert={!onPage}>
                 <Link to={to} className="dw-slider-card">
                   {/* the amber outline-only twin sits behind the filled face */}
                   <span className="dw-slider-outline" aria-hidden="true" />
                   <span className="dw-slider-face">
                     <span className="dw-slider-number">{String(index + 1).padStart(2, '0')}</span>
                     <h3 className="dw-slider-title">
-                      {title.map((line) => (
+                      {t(title).split('\n').map((line) => (
                         <span key={line}>{line}</span>
                       ))}
                     </h3>
                     <span className="dw-slider-more">
-                      <span>View More</span>
+                      <span>{t('common.viewMore')}</span>
                       <RoughArrow />
                     </span>
                   </span>
@@ -92,7 +98,7 @@ function ServiceSlider({ cards }: ServiceSliderProps) {
             key={index}
             type="button"
             className={index === page ? 'is-active' : undefined}
-            aria-label={`Show services page ${index + 1}`}
+            aria-label={t('home.services.page', { page: index + 1 })}
             aria-current={index === page}
             onClick={() => goTo(index)}
           />

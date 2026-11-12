@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { PointerEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import NumberBadge from '../../components/numberBadge/numberBadge'
 import PillLabel from '../../components/pillLabel/pillLabel'
 import SplitWords from '../../components/splitWords/splitWords'
@@ -14,6 +15,7 @@ const SWIPE_PX = 50
 const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 function SocialMedia() {
+  const { t } = useTranslation()
   const pageRef = useRef<HTMLDivElement>(null)
   const slideRef = useRef<HTMLDivElement>(null)
   const moreRef = useRef<HTMLDivElement>(null)
@@ -29,8 +31,8 @@ function SocialMedia() {
   useScrollReveal(pageRef)
 
   useEffect(() => {
-    document.title = 'Social Media Portfolio | Deewan Development'
-  }, [])
+    document.title = t('meta.title.social')
+  }, [t])
 
   const goTo = (next: number, dir: 1 | -1) => {
     if (isBusy.current || next === index) return
@@ -94,9 +96,9 @@ function SocialMedia() {
     <div ref={pageRef} className="sm">
       <section className="sm-hero dw-container">
         <header className="sm-heading">
-          <PillLabel data-reveal="zoom">{socialHero.label}</PillLabel>
+          <PillLabel data-reveal="zoom">{t(socialHero.label)}</PillLabel>
           <h1 data-reveal="words">
-            <SplitWords text={socialHero.title} />
+            <SplitWords text={t(socialHero.title)} />
           </h1>
         </header>
 
@@ -104,29 +106,29 @@ function SocialMedia() {
           className="sm-carousel"
           role="region"
           aria-roledescription="carousel"
-          aria-label="Social media projects"
+          aria-label={t('social.carousel')}
         >
           <div
             ref={slideRef}
             className="sm-slide"
             role="group"
             aria-roledescription="slide"
-            aria-label={`${index + 1} of ${count}: ${project.name}`}
+            aria-label={t('social.slide', { index: index + 1, count, name: t(project.name) })}
           >
             <div className="sm-title">
               <NumberBadge number={index + 1} numberRef={numberRef} data-reveal="pop" />
               <div>
                 <p className="sm-category" data-reveal="up">
-                  {project.category}
+                  {t(project.category)}
                 </p>
                 <h2 className="sm-name" data-reveal="up">
-                  {project.name}
+                  {t(project.name)}
                 </h2>
               </div>
             </div>
 
             <p className="sm-description" data-reveal="up">
-              {project.description}
+              {t(project.description)}
             </p>
 
             <figure
@@ -139,14 +141,14 @@ function SocialMedia() {
               <img
                 className="dw-float"
                 src={project.image}
-                alt={`${project.name} social media posts, profile and stories`}
+                alt={t('social.mockupAlt', { name: t(project.name) })}
                 draggable={false}
               />
             </figure>
           </div>
 
           <div className="sm-controls">
-            <button type="button" className="sm-arrow" aria-label="Previous project" onClick={() => step(-1)}>
+            <button type="button" className="sm-arrow" aria-label={t('social.previous')} onClick={() => step(-1)}>
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M15 5 8 12l7 7" />
               </svg>
@@ -158,14 +160,14 @@ function SocialMedia() {
                   key={id}
                   type="button"
                   className={`sm-dot${dot === index ? ' is-active' : ''}`}
-                  aria-label={`Show ${name}`}
+                  aria-label={t('social.show', { name: t(name) })}
                   aria-current={dot === index ? 'true' : undefined}
                   onClick={() => goTo(dot, dot > index ? 1 : -1)}
                 />
               ))}
             </div>
 
-            <button type="button" className="sm-arrow" aria-label="Next project" onClick={() => step(1)}>
+            <button type="button" className="sm-arrow" aria-label={t('social.next')} onClick={() => step(1)}>
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="m9 5 7 7-7 7" />
               </svg>
@@ -174,18 +176,18 @@ function SocialMedia() {
 
           <div ref={moreRef} className="sm-slide-more">
             <h3 className="sm-subtitle" data-reveal="up">
-              What We Do
+              {t('social.whatWeDo')}
             </h3>
             <ul className="sm-services">
               {project.services.map((service) => (
                 <li key={service} data-reveal="up">
-                  {service}
+                  {t(service)}
                 </li>
               ))}
             </ul>
 
             <h3 className="sm-subtitle" data-reveal="up">
-              Explore Our Platforms
+              {t('social.platforms')}
             </h3>
             <ul className="sm-platforms">
               {project.platforms.map(({ name, href }, spot) => {
@@ -193,7 +195,7 @@ function SocialMedia() {
                 return (
                   <li key={name} className={`sm-platform sm-platform-${labelSpots[spot]}`} data-reveal="pop">
                     {href ? (
-                      <a href={href} target="_blank" rel="noreferrer" aria-label={`${project.name} on ${name}`}>
+                      <a href={href} target="_blank" rel="noreferrer" aria-label={t('social.onPlatform', { name: t(project.name), platform: name })}>
                         {icon}
                       </a>
                     ) : (

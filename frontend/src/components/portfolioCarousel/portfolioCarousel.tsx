@@ -1,6 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { KeyboardEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import Button from '../button/button'
+import LottieGlobe from '../lottieGlobe/lottieGlobe'
 import { gsap, useGSAP } from '../../lib/gsap'
 import { initialProject, projects } from '../../data/portfolio'
 import './portfolioCarousel.scss'
@@ -78,6 +80,7 @@ type PortfolioCarouselProps = {
 }
 
 function PortfolioCarousel({ unlockedId, onUnlock, onRelock }: PortfolioCarouselProps) {
+  const { t } = useTranslation()
   const count = projects.length
   const stageRef = useRef<HTMLDivElement>(null)
   const introDone = useRef(false)
@@ -262,7 +265,7 @@ function PortfolioCarousel({ unlockedId, onUnlock, onRelock }: PortfolioCarousel
             <ellipse cx="447" cy="52" rx="420" ry="34" filter="url(#pf-rough)" />
           </svg>
 
-          {projects.map(({ id, name, logo }, index) => {
+          {projects.map(({ id, name, animation }, index) => {
             const slot = slotOf(index, active, count)
             const isMiddle = slot === 0
 
@@ -272,7 +275,7 @@ function PortfolioCarousel({ unlockedId, onUnlock, onRelock }: PortfolioCarousel
                 type="button"
                 className="pf-card"
                 data-slot={slot}
-                aria-label={isMiddle ? `Unlock the ${name} case study` : `Show ${name}`}
+                aria-label={t(isMiddle ? 'portfolio.unlock' : 'portfolio.show', { name: t(name) })}
                 tabIndex={isUnlocked && !isMiddle ? -1 : 0}
                 onClick={() => handleCard(index)}
                 onPointerEnter={() => isMiddle && setIsHovering(true)}
@@ -282,7 +285,7 @@ function PortfolioCarousel({ unlockedId, onUnlock, onRelock }: PortfolioCarousel
               >
                 <span className="pf-card-back" />
                 <span className="pf-card-front">
-                  <img src={logo} alt="" draggable={false} />
+                  <LottieGlobe className="pf-card-animation" src={animation} />
                 </span>
 
                 {isMiddle && (
@@ -323,7 +326,7 @@ function PortfolioCarousel({ unlockedId, onUnlock, onRelock }: PortfolioCarousel
                     ['--tilt' as string]: `${[-3, 2.5, -2, 3][index]}deg`,
                   }}
                 >
-                  <span className="pf-tag-text">{tag}</span>
+                  <span className="pf-tag-text">{t(tag)}</span>
                   <img
                     className="pf-tag-arrow"
                     src="/assets/images/portfolio/arrow.webp"
@@ -340,7 +343,7 @@ function PortfolioCarousel({ unlockedId, onUnlock, onRelock }: PortfolioCarousel
       <div className="pf-hint">
         {isUnlocked ? (
           <Button variant="soft" onClick={onRelock}>
-            Back to all projects
+            {t('portfolio.back')}
           </Button>
         ) : (
           <p>
@@ -348,7 +351,7 @@ function PortfolioCarousel({ unlockedId, onUnlock, onRelock }: PortfolioCarousel
               <path d="M7.5 11V8a4.5 4.5 0 0 1 9 0v3" />
               <rect x="4.5" y="11" width="15" height="10.5" rx="2.6" />
             </svg>
-            Click the card in the middle to unlock its case study
+            {t('portfolio.hint')}
           </p>
         )}
       </div>

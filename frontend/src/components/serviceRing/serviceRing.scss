@@ -91,6 +91,8 @@
     background: $amber;
     transition: transform 0.25s ease;
 
+    
+
     svg {
       width: 26px;
       height: 26px;
@@ -172,6 +174,19 @@
 
     &-card-text {
       gap: 8px;
+    }
+  }
+}
+
+html[lang="ar"] {
+  .dw-ring {
+    &-nav {
+      transform: rotate(180deg);
+    }
+    &-svg {
+      transform: rotate(90deg);
+
+
     }
   }
 }

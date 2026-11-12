@@ -47,3 +47,40 @@ $kalam: (
     font-display: swap;
   }
 }
+
+// Arabic: Zain only covers Arabic letters (unicode-range), so it is used just for those glyphs
+// and every Latin word keeps its own font. It sits second in each stack in variables.scss.
+$zain: (
+  300: 'Light',
+  400: 'Regular',
+  700: 'Bold',
+  800: 'ExtraBold',
+);
+
+@each $weight, $name in $zain {
+  @font-face {
+    font-family: 'Zain';
+    font-weight: $weight;
+    src: url('/assets/fonts/Zain-#{$name}.ttf') format('truetype');
+    font-display: swap;
+    size-adjust: 112%; // Zain runs small next to Merriweather and Inter
+    unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+  }
+}
+
+$playpenArabic: (
+  300: 'Light',
+  400: 'Regular',
+  // 700: 'Bold',
+);
+@each $weight, $name in $playpenArabic {
+  @font-face {
+    font-family: 'Playpen Arabic';
+    font-weight: $weight;
+    src: url('/assets/fonts/PlaypenSansArabic-#{$name}.ttf') format('truetype');
+    font-display: swap;
+    size-adjust: 112%; // Playpen runs small next to Merriweather and Inter
+    unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+  }
+
+}

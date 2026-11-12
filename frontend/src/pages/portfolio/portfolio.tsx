@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import LottieGlobe from '../../components/lottieGlobe/lottieGlobe'
 import PillLabel from '../../components/pillLabel/pillLabel'
 import SplitWords from '../../components/splitWords/splitWords'
@@ -9,15 +10,17 @@ import { portfolioHero, projects } from '../../data/portfolio'
 import './portfolio.scss'
 
 function Portfolio() {
+  const { t } = useTranslation()
   const pageRef = useRef<HTMLDivElement>(null)
   const relockTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const [unlockedId, setUnlockedId] = useState<string | null>(null)
   useScrollReveal(pageRef)
 
   useEffect(() => {
-    document.title = 'Our Portfolio | Deewan Development'
-    return () => clearTimeout(relockTimer.current)
-  }, [])
+    document.title = t('meta.title.portfolio')
+  }, [t])
+
+  useEffect(() => () => clearTimeout(relockTimer.current), [])
 
   const unlocked = projects.find(({ id }) => id === unlockedId)
 
@@ -39,9 +42,9 @@ function Portfolio() {
 
         <div className="dw-container">
           <header className="pf-heading">
-            <PillLabel data-reveal="zoom">{portfolioHero.label}</PillLabel>
+            <PillLabel data-reveal="zoom">{t(portfolioHero.label)}</PillLabel>
             <h1 data-reveal="words">
-              <SplitWords text={portfolioHero.title} />
+              <SplitWords text={t(portfolioHero.title)} />
             </h1>
           </header>
 

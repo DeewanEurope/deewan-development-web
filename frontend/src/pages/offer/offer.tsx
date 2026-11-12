@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import LottieGlobe from '../../components/lottieGlobe/lottieGlobe'
 import Button from '../../components/button/button'
 import NumberBadge from '../../components/numberBadge/numberBadge'
@@ -8,12 +9,13 @@ import { offerHero, offers } from '../../data/offer'
 import './offer.scss'
 
 function Offer() {
+  const { t } = useTranslation()
   const pageRef = useRef<HTMLDivElement>(null)
   useScrollReveal(pageRef)
 
   useEffect(() => {
-    document.title = 'What We Offer | Deewan Development'
-  }, [])
+    document.title = t('meta.title.offer')
+  }, [t])
 
   return (
     <div ref={pageRef} className="offer">
@@ -28,13 +30,13 @@ function Offer() {
         <div className="dw-container">
           <div className="offer-hero-card" data-reveal="zoom">
             <p className="offer-hero-label" data-reveal="up">
-              {offerHero.label}
+              {t(offerHero.label)}
             </p>
             <h1 className="offer-hero-title" data-reveal="words">
-              <SplitWords text={offerHero.title} />
+              <SplitWords text={t(offerHero.title)} />
             </h1>
             <p className="offer-hero-text" data-reveal="up">
-              {offerHero.text}
+              {t(offerHero.text)}
             </p>
           </div>
         </div>
@@ -57,25 +59,25 @@ function Offer() {
             </div>
 
             <p className="offer-item-eyebrow" data-reveal="up">
-              {eyebrow}
+              {t(eyebrow)}
             </p>
             <h2 className="offer-item-title" data-reveal="words">
-              <SplitWords text={title} />
+              <SplitWords text={t(title)} />
             </h2>
 
             <div className="offer-item-body">
               <div className="offer-item-text">
                 {intro.map((paragraph) => (
                   <p key={paragraph} data-reveal="up">
-                    {paragraph}
+                    {t(paragraph)}
                   </p>
                 ))}
 
-                <h3 data-reveal="up">Our capabilities include:</h3>
+                <h3 data-reveal="up">{t('offer.capabilities')}</h3>
                 <ul>
                   {capabilities.map((capability) => (
                     <li key={capability} data-reveal="slide">
-                      {capability}
+                      {t(capability)}
                     </li>
                   ))}
                 </ul>
@@ -85,7 +87,7 @@ function Offer() {
 
                 <div data-reveal="up">
                   <Button to="/contact" variant="amber" className="offer-contact">
-                    Contact Us
+                    {t('common.contactUs')}
                   </Button>
                 </div>
               </div>

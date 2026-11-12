@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import './footer.scss'
 
@@ -36,15 +37,19 @@ const socials = [
 ]
 
 function Footer() {
+  const { t } = useTranslation()
+
   return (
     <footer className="dw-footer">
       <div className="dw-footer-bar dw-container">
-        <Link to="/" className="dw-footer-logo" aria-label="Deewan – home">
-          <img src="/assets/images/logos/logoWhite.webp" alt="Deewan for Digital Learning Development" />
+        <Link to="/" className="dw-footer-logo" aria-label={t('footer.homeLink')}>
+          <img src="/assets/images/logos/logoWhite.webp" alt={t('common.brand')} />
         </Link>
-
-        <p className="dw-footer-copyright">© 2026 Deewan for Digital Learning Development</p>
-
+        <p className="dw-footer-copyright">{t('footer.copyright')}</p>
+        <div className="dw-footer-legal">
+          <p className="dw-footer-copyright">{t('footer.copyright')}</p>
+          <p className="dw-footer-copyright">{t('footer.copyright2')}</p>
+        </div>
         <ul className="dw-footer-socials">
           {socials.map(({ label, href, icon }) => (
             <li key={label}>

@@ -1,0 +1,64 @@
+// Per-language fixes. <html lang dir> is set in src/i18n/index.ts.
+// Arabic: flex rows and text alignment flip on their own with dir="rtl"; the rules here fix what does not.
+
+html[lang='ar'] {
+  // letter-spacing pulls joined Arabic letters apart, and Arabic has no capitals to space out
+  *,
+  *::before,
+  *::after {
+    letter-spacing: normal !important;
+  }
+
+  // the design's fixed pixel line-heights are tuned for Latin text; Arabic needs taller lines
+  p,
+  li,
+  dd {
+    line-height: 1.7 !important;
+  }
+
+  .dw-slider-title {
+    font-size: calc(36 * var(--k));
+    line-height: calc(60 * var(--k));
+  }
+
+  // the word-reveal mask clips anything outside the line box: give hamza and other marks room
+  .dw-word {
+    padding-block: 0.3em;
+    margin-block: -0.3em;
+  }
+}
+
+html[dir='rtl'] {
+  // "next" points left in a right-to-left page
+  .dw-rough-arrow {
+    rotate: -90.49deg;
+  }
+
+  .dw-ring-arrow svg {
+    scale: -1 1;
+  }
+
+  // Home services: in RTL the grid lays the later pages out to the left of the first one, so the
+  // track has to slide right (positive translate) to bring them in, and the phone "lead" space
+  // that centres a card moves to the right-hand side.
+  .dw-slider-track {
+    padding-left: 0;
+    padding-right: var(--lead, 0);
+    transform: translateX(calc(var(--page, 0) * var(--pitch)));
+  }
+
+  .dw-slider-title {
+    padding-inline: calc(58 * var(--k)) calc(30 * var(--k)); // start (right), end
+    text-align: right;
+  }
+}
+
+html[lang='de'] {
+  // German compounds can be longer than a phone-width column; let the browser hyphenate them
+  p,
+  li {
+    hyphens: auto;
+    overflow-wrap: break-word;
+  }
+}
+

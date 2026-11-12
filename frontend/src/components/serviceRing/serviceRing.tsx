@@ -1,10 +1,11 @@
 import { useRef, useState, type CSSProperties } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { gsap, useGSAP } from '../../lib/gsap'
 import './serviceRing.scss'
 
 export type Service = {
-  title: string
+  title: string // translation key
   image: string
   to: string
 }
@@ -20,6 +21,7 @@ const mod = (value: number, size: number) => ((value % size) + size) % size
 // Wide cards stand on a circle that turns forever. The ones behind fade out and show through,
 // every card always faces the viewer. Hover pauses it; dots and arrows step it by hand.
 function ServiceRing({ services, interval = 3.2 }: ServiceRingProps) {
+  const { t } = useTranslation()
   const count = services.length
   const step = 360 / count
 
@@ -111,7 +113,7 @@ function ServiceRing({ services, interval = 3.2 }: ServiceRingProps) {
       onBlur={resume}
       role="region"
       aria-roledescription="carousel"
-      aria-label="Our services"
+      aria-label={t('about.services.carousel')}
     >
       <div className="dw-ring-stage">
         <div className="dw-ring-tilt">
@@ -125,9 +127,9 @@ function ServiceRing({ services, interval = 3.2 }: ServiceRingProps) {
               >
                 <img src={image} alt="" loading="lazy" />
                 <div className="dw-ring-card-text">
-                  <h3>{title}</h3>
+                  <h3>{t(title)}</h3>
                   <Link to={to} className="dw-ring-more" tabIndex={i === active ? 0 : -1}>
-                    <span>View More</span>
+                    <span>{t('common.viewMore')}</span>
                     <span className="dw-ring-arrow" aria-hidden="true">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <circle cx="12" cy="12" r="9" />
@@ -143,7 +145,7 @@ function ServiceRing({ services, interval = 3.2 }: ServiceRingProps) {
       </div>
 
       <div className="dw-ring-controls">
-        <button type="button" className="dw-ring-nav" aria-label="Previous service" onClick={() => goToService(mod(active - 1, count))}>
+        <button type="button" className="dw-ring-nav" aria-label={t('about.services.previous')} onClick={() => goToService(mod(active - 1, count))}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
             <path d="m15 5-7 7 7 7" />
           </svg>
@@ -154,13 +156,13 @@ function ServiceRing({ services, interval = 3.2 }: ServiceRingProps) {
               key={title}
               type="button"
               className={i === active ? 'is-active' : undefined}
-              aria-label={`Show ${title}`}
+              aria-label={t('about.services.show', { title: t(title) })}
               aria-current={i === active}
               onClick={() => goToService(i)}
             />
           ))}
         </div>
-        <button type="button" className="dw-ring-nav" aria-label="Next service" onClick={() => goToService(mod(active + 1, count))}>
+        <button type="button" className="dw-ring-nav" aria-label={t('about.services.next')} onClick={() => goToService(mod(active + 1, count))}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
             <path d="m9 5 7 7-7 7" />
           </svg>
