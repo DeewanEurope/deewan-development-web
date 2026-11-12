@@ -8,6 +8,7 @@ import SocialMedia from './pages/socialMedia/socialMedia'
 import Contact from './pages/contact/contact'
 import NotFoundPage from './pages/notFound/notFound'
 import Impressum from './pages/impressum/impressum'
+import Privacy from './pages/privacy/privacy'
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
         <Route path="/offer" element={<Offer />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/impressum" element={<Impressum />} />
+        <Route path="/datenschutz" element={<Privacy />} />
+        <Route path="/privacy" element={<Privacy />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

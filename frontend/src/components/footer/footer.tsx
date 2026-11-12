@@ -50,6 +50,8 @@ function Footer() {
           <p className="dw-footer-copyright">{t('footer.copyright2')}</p>
           <p className="dw-footer-copyright">
             <Link to="/impressum" className="dw-footer-impressum">{t('footer.impressum')}</Link>
+            {' · '}
+            <Link to="/datenschutz" className="dw-footer-impressum">{t('footer.privacy')}</Link>
           </p>
         </div>
         <ul className="dw-footer-socials">
