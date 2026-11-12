@@ -283,5 +283,13 @@
   "contact.error": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
   "notFound.heading": "Seite nicht gefunden",
   "notFound.description": "Die von Ihnen gesuchte Seite existiert nicht oder wurde möglicherweise verschoben. Wir helfen Ihnen gerne weiter.",
-  "notFound.back": "Zurück zur Startseite"
+  "notFound.back": "Zurück zur Startseite",
+  "consent.title": "Inhalte anderer Anbieter",
+  "consent.text": "Einige Seiten zeigen Projektvideos, die auf Google-Servern liegen (Google Firebase). Wenn Sie das erlauben, erhält Google Ihre IP-Adresse, auch in den USA. Mit „Nur notwendige“ bleiben die Videos ausgeblendet. Sie können Ihre Wahl jederzeit unter „Cookie-Einstellungen“ unten auf jeder Seite ändern.",
+  "consent.only_necessary": "Nur notwendige",
+  "consent.allow": "Alle erlauben",
+  "consent.placeholder": "Dieses Video stammt von {{provider}}. Wenn Sie es laden, erhält {{provider}} Ihre IP-Adresse.",
+  "consent.load": "Video laden",
+  "consent.settings": "Cookie-Einstellungen",
+  "consent.privacy": "Datenschutzerklärung"
 }

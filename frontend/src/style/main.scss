@@ -3,3 +3,8 @@
 @use './utilities';
 @use './animation';
 @use './languages';
+
+:root {
+  --dc-accent: #0a5c61;
+  --dc-ink: #074044;
+}

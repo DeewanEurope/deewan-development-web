@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { openConsentSettings } from '../consent/consentStore'
 import './footer.scss'
 
 const socials = [
@@ -52,6 +53,8 @@ function Footer() {
             <Link to="/impressum" className="dw-footer-impressum">{t('footer.impressum')}</Link>
             {' · '}
             <Link to="/datenschutz" className="dw-footer-impressum">{t('footer.privacy')}</Link>
+            {' · '}
+            <button type="button" className="dc-footer-link dw-footer-impressum" onClick={openConsentSettings}>{t('consent.settings')}</button>
           </p>
         </div>
         <ul className="dw-footer-socials">
