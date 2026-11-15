@@ -28,7 +28,7 @@
   "footer.copyright": "Copyright © 2026 Deewan Development.",
   "footer.impressum": "Impressum",
   "footer.privacy": "Datenschutz",
-  "footer.copyright2" : "Alle Rechte vorbehalten. \n A brand of Deewan Europe GmbH, Germany.",
+  "footer.copyright2": "Alle Rechte vorbehalten. \n A brand of Deewan Europe GmbH, Germany.",
   "home.hero.title": "Wir gestalten Ihre\n<em>digitale Zukunft</em>",
   "home.hero.text": "Innovative Web- und Mobile-Lösungen, maßgeschneidert für dein Unternehmen. Wir verbinden technische Exzellenz mit unternehmerischer Präzision.",
   "home.hero.primary": "Kontakt",
@@ -45,7 +45,7 @@
   "home.services.ux": "UI/UX-Design",
   "home.services.social": "Social-Media-\nManagement",
   "home.services.marketing": "Digitales\nMarketing",
-  "home.services.carousel": "Unsere Kernkompetenzen",
+  "home.services.carousel": "Kernkompetenzen, Folien",
   "home.services.page": "Leistungsseite {{page}} anzeigen",
   "home.portfolio.label": "Unser Portfolio",
   "home.portfolio.title": "Ideen, die wir zum Leben erweckt haben",
@@ -291,5 +291,6 @@
   "consent.placeholder": "Dieses Video stammt von {{provider}}. Wenn Sie es laden, erhält {{provider}} Ihre IP-Adresse.",
   "consent.load": "Video laden",
   "consent.settings": "Cookie-Einstellungen",
-  "consent.privacy": "Datenschutzerklärung"
+  "consent.privacy": "Datenschutzerklärung",
+  "a11y.skipToContent": "Zum Hauptinhalt springen"
 }

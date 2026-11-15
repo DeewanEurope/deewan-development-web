@@ -12,7 +12,7 @@
 
   &-code {
     margin: 0;
-    color: $amber;
+    color: #9a6b00; // darker than $amber so the big "404" reads at 3:1 or more (WCAG 1.4.3)
     font-family: $font-hand;
     font-weight: 700;
     font-size: clamp(96px, 18vw, 180px);

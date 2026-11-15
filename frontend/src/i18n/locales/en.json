@@ -45,7 +45,7 @@
   "home.services.ux": "UI/UX\nDesign",
   "home.services.social": "Social\nMedia\nManagement",
   "home.services.marketing": "Digital\nMarketing",
-  "home.services.carousel": "Our core competencies",
+  "home.services.carousel": "Core competencies, slides",
   "home.services.page": "Show services page {{page}}",
   "home.portfolio.label": "Our Portfolio",
   "home.portfolio.title": "Ideas We Brought to Life",
@@ -293,5 +293,6 @@
   "consent.placeholder": "This video comes from {{provider}}. If you load it, {{provider}} receives your IP address.",
   "consent.load": "Load video",
   "consent.settings": "Cookie settings",
-  "consent.privacy": "Privacy policy"
+  "consent.privacy": "Privacy policy",
+  "a11y.skipToContent": "Skip to main content"
 }
