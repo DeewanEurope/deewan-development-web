@@ -133,12 +133,15 @@
 .sm-dots {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px; // dots sit 26px apart, so each one has a 24px touch area of its own (WCAG 2.5.8)
 }
 
 .sm-dot {
   width: 12px;
   height: 12px;
+  // A 24 × 24 pixel touch area around the small dot (WCAG 2.5.8), without changing how it looks.
+  position: relative;
+  &::before { content: ""; position: absolute; inset: -6px; }
   padding: 0;
   border: 0;
   border-radius: 6px;

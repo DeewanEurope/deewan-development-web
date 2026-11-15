@@ -39,6 +39,7 @@ function Navbar() {
   const [isDropOpen, setIsDropOpen] = useState(false)
   const dropRef = useRef<HTMLLIElement>(null)
   const dropButtonRef = useRef<HTMLButtonElement>(null)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
   const closeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   // every link carries its own scribble, so it can never drift away from the text
@@ -101,6 +102,24 @@ function Navbar() {
   useEffect(() => () => clearTimeout(closeTimer.current), [])
 
   const closeMenu = () => setIsMenuOpen(false)
+
+  // The full-screen phone menu: Escape closes it and returns focus to the menu button, and while it is open
+  // the page behind it (hidden under the menu) is out of the keyboard order (WCAG 2.1.1, 2.4.3, 2.4.11).
+  useEffect(() => {
+    if (!isMenuOpen) return
+    const behind = [document.querySelector('main'), document.querySelector('footer')].filter(Boolean) as HTMLElement[]
+    behind.forEach((el) => { el.inert = true })
+    const onKey = (event: globalThis.KeyboardEvent) => {
+      if (event.key !== 'Escape') return
+      setIsMenuOpen(false)
+      menuButtonRef.current?.focus()
+    }
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      behind.forEach((el) => { el.inert = false })
+    }
+  }, [isMenuOpen])
 
   // hover opens it; leaving waits a moment so the pointer can travel down to the list
   const openDrop = () => {
@@ -223,6 +242,7 @@ function Navbar() {
           </div>
 
           <button
+            ref={menuButtonRef}
             type="button"
             className={`dw-header-toggle${isMenuOpen ? ' is-open' : ''}`}
             aria-label={t(isMenuOpen ? 'nav.closeMenu' : 'nav.openMenu')}
@@ -236,7 +256,7 @@ function Navbar() {
         </div>
       </header>
 
-      <div className={`dw-overlay${isMenuOpen ? ' is-open' : ''}`} aria-hidden={!isMenuOpen}>
+      <div className={`dw-overlay${isMenuOpen ? ' is-open' : ''}`} aria-hidden={!isMenuOpen} inert={!isMenuOpen}>
         <ul className="dw-overlay-list">
           {navItems.map(({ to, label, children }, index) => (
             <li key={to}>
