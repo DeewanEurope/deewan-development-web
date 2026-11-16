@@ -1,34 +1,83 @@
 @use '../../style/variables' as *;
+@use '../../style/mixins' as *;
 
+// Shared look for the legal pages (Impressum and Datenschutz).
 .dw-impressum {
-  max-width: 760px;
-  padding-block: 120px 72px;
+  max-width: 860px;
+  padding-block: 72px 96px;
   text-align: start;
+  color: $ink;
+  font-family: $font-sans;
+  font-size: 1rem;
+  line-height: 1.7;
+
+  @include tablet {
+    padding-block: 48px 72px;
+  }
 
   h1 {
-    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    margin: 0 0 32px;
+    padding-bottom: 24px;
+    border-bottom: 3px solid $amber;
+    font-family: $font-body;
+    font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+    line-height: 1.25;
     color: $text-dark;
-    margin-bottom: 24px;
+    overflow-wrap: anywhere;
   }
 
   h2 {
-    font-size: 1.05rem;
+    margin: 40px 0 12px;
+    padding-top: 24px;
+    border-top: 1px solid $blue-light-two;
+    font-family: $font-body;
+    font-size: 1.15rem;
     font-weight: 700;
+    line-height: 1.4;
     color: $primary-color;
-    margin: 22px 0 6px;
+  }
+
+  // no rule above the first heading after the title
+  h1 + h2,
+  h1 + p + h2 {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
   }
 
   p {
-    margin: 0 0 4px;
+    margin: 0 0 2px;
     line-height: 1.6;
     overflow-wrap: anywhere;
   }
 
+  strong {
+    color: $text-dark;
+    font-weight: 600;
+  }
+
   a {
     color: $primary-color;
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: $blue-light-one;
+    text-underline-offset: 3px;
+    overflow-wrap: anywhere;
+    transition: text-decoration-color 0.2s ease;
+
+    &:hover {
+      text-decoration-color: currentColor;
+    }
+
+    @include focus-ring;
   }
 
   &-note {
-    margin-top: 16px !important;
+    margin-top: 28px !important;
+    padding: 16px 20px;
+    border-inline-start: 4px solid $amber;
+    border-radius: 4px;
+    background: $cream;
+    color: $text-dark;
   }
 }

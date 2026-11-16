@@ -1,19 +1,72 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useTranslation } from "react-i18next";
 import "../impressum/impressum.scss";
 import "./privacy.scss";
 
 // Privacy policy (Datenschutzerklärung). German is the binding version; the
 // English text below it is a translation. Generated from the reviewed draft on
 // 12 Nov 2026. Do not change the wording without the managing director's approval.
+type PolicyLanguage = "de" | "en";
+
+const TABS: { code: PolicyLanguage; label: string }[] = [
+  { code: "de", label: "Deutsch" },
+  { code: "en", label: "English" },
+];
+
 function Privacy() {
+  const { i18n } = useTranslation();
+  // Opens in the site language; old "#english" links still land on the English text.
+  const [language, setLanguage] = useState<PolicyLanguage>(() =>
+    window.location.hash === "#english" ? "en" : i18n.resolvedLanguage === "de" ? "de" : "en"
+  );
+  const tabRefs = useRef<Record<PolicyLanguage, HTMLButtonElement | null>>({ de: null, en: null });
+
   useEffect(() => {
     document.title = "Datenschutz / Privacy policy";
   }, []);
 
+  // Arrow keys move between the two tabs (WAI-ARIA tabs pattern).
+  const onTabKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    const next: PolicyLanguage = language === "de" ? "en" : "de";
+    const target = event.key === "Home" ? "de" : event.key === "End" ? "en" : next;
+    setLanguage(target);
+    tabRefs.current[target]?.focus();
+  };
+
   return (
-    <section className="dw-container dw-impressum dw-privacy" lang="de" dir="ltr">
+    <section className="dw-container dw-impressum dw-privacy" dir="ltr">
+      <div className="dw-privacy-switch" role="tablist" aria-label="Sprache / Language">
+        {TABS.map(({ code, label }) => (
+          <button
+            key={code}
+            ref={(el) => { tabRefs.current[code] = el; }}
+            type="button"
+            role="tab"
+            id={`privacy-tab-${code}`}
+            aria-controls={`privacy-panel-${code}`}
+            aria-selected={language === code}
+            tabIndex={language === code ? 0 : -1}
+            lang={code}
+            className="dw-privacy-tab"
+            onClick={() => setLanguage(code)}
+            onKeyDown={onTabKeyDown}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      <div
+        role="tabpanel"
+        id="privacy-panel-de"
+        aria-labelledby="privacy-tab-de"
+        className="dw-privacy-panel"
+        lang="de"
+        hidden={language !== "de"}
+      >
       <h1>Datenschutzerklärung</h1>
-      <p><a href="#english">English version below</a></p>
       <h2>1. Verantwortliche</h2>
       <p>Verantwortlich für diese Website ist:</p>
       <p>Deewan Europe GmbH, Robert-Bosch-Straße 110, 74081 Heilbronn, Deutschland. Vertreten durch den Geschäftsführer Mohammad Kamal Mohammad Ayaseh. E-Mail: <a href="mailto:admin@deewan.eu">admin@deewan.eu</a>, Telefon: <a href="tel:+491632929209">+49 163 2929209</a>.</p>
@@ -64,10 +117,18 @@ function Privacy() {
       <p>Wir treffen keine Entscheidungen allein auf Grundlage automatisierter Verarbeitung und erstellen keine Profile (Art. 22 DSGVO).</p>
       <h2>13. Stand</h2>
       <p>Stand: November 2026. Wir passen diese Erklärung an, wenn sich unsere Website oder die Rechtslage ändert.</p>
+      </div>
 
-      <h2 id="english" className="dw-privacy-lang" lang="en">Privacy policy (English)</h2>
-      <div lang="en">
-        <p>This is a translation. If the two versions differ, the German version applies.</p>
+      <div
+        role="tabpanel"
+        id="privacy-panel-en"
+        aria-labelledby="privacy-tab-en"
+        className="dw-privacy-panel"
+        lang="en"
+        hidden={language !== "en"}
+      >
+        <h1 id="english">Privacy policy (English)</h1>
+        <p className="dw-privacy-translation">This is a translation. If the two versions differ, the German version applies.</p>
         <h2>1. Who is responsible</h2>
         <p>This website is operated by Deewan Europe GmbH, Robert-Bosch-Straße 110, 74081 Heilbronn, Germany, represented by its managing director Mohammad Kamal Mohammad Ayaseh. Email: <a href="mailto:admin@deewan.eu">admin@deewan.eu</a>, phone: <a href="tel:+491632929209">+49 163 2929209</a>.</p>
         <p>The services offered on this website are provided by our Jordanian partner company Deewan Development for E-Learning LLC (<span dir="rtl" lang="ar">شركة ديوان التطور للتعليم الالكتروني ذ.م.م</span>), Al-Baouneyah St. 14, Amman 11191, Jordan. It is independently responsible for the enquiries and projects it handles.</p>

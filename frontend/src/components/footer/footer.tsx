@@ -35,6 +35,22 @@ const socials = [
       </svg>
     ),
   },
+  {
+    label: 'Google Business Profile',
+    href: 'https://share.google/DiaMGgLrENcQNhMxS',
+    icon: (
+      // storefront with a scalloped awning and a "G" on the front, like the Business Profile logo
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path
+          d="M4.5 3h15L21 8a2.25 2.25 0 0 1-4.5 0 2.25 2.25 0 0 1-4.5 0 2.25 2.25 0 0 1-4.5 0A2.25 2.25 0 0 1 3 8z"
+          fill="currentColor"
+          stroke="none"
+        />
+        <path d="M5 11.5v9h14v-9" />
+        <path d="M14.1 14.4A2.6 2.6 0 1 0 14.8 16.2H12.2" strokeWidth="1.6" />
+      </svg>
+    ),
+  },
 ]
 
 function Footer() {

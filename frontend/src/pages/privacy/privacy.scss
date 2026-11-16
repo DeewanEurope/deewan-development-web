@@ -1,20 +1,72 @@
+@use '../../style/variables' as *;
+@use '../../style/mixins' as *;
+
 .dw-privacy {
   p {
-    margin: 0 0 12px;
+    margin: 0 0 14px;
   }
 
   ul {
-    padding-inline-start: 1.2em;
-    margin: 0 0 12px;
+    margin: 0 0 16px;
+    padding-inline-start: 1.4em;
+    list-style: disc;
   }
 
   li {
-    margin-bottom: 4px;
-    line-height: 1.6;
+    margin-bottom: 10px;
+    padding-inline-start: 4px;
+
+    &::marker {
+      color: $primary-color-light;
+    }
   }
 
-  &-lang {
-    font-size: 1.5rem !important;
-    margin-top: 48px !important;
+  // ─── Language switch ───────────────────────────────────────────────────
+
+  &-switch {
+    display: inline-flex;
+    gap: 4px;
+    margin-bottom: 32px;
+    padding: 4px;
+    border: 1px solid $blue-light-two;
+    border-radius: 999px;
+    background: $blue-light-three;
+  }
+
+  &-tab {
+    min-height: 40px;
+    padding: 8px 22px;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: $primary-color;
+    font-family: $font-sans;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      background: $blue-light-two;
+    }
+
+    &[aria-selected='true'] {
+      background: $primary-color;
+      color: $white;
+    }
+
+    @include focus-ring;
+  }
+
+  &-panel {
+    @include focus-ring;
+  }
+
+  &-translation {
+    margin: 0 0 32px !important;
+    padding: 14px 18px;
+    border-inline-start: 4px solid $amber;
+    border-radius: 4px;
+    background: $cream;
+    color: $text-dark;
   }
 }
