@@ -7,6 +7,7 @@ import { useScrollReveal } from '../../hooks/useScrollReveal'
 import { caseStudyHeading } from '../../data/portfolio'
 import type { Project, TechName } from '../../data/portfolio'
 import './caseStudy.scss'
+import ExternalContent from '../consent/ExternalContent'
 
 const assets = '/assets/images/portfolio'
 
@@ -114,6 +115,7 @@ function CaseStudy({ project }: { project: Project }) {
             <div className="cs-laptop-screen">
               {/* native controls include the full-screen button */}
               {caseStudy.video ? (
+                <ExternalContent provider="Google" style={{ width: '100%', height: '100%', minHeight: 0, borderRadius: 0 }}>
                 <video
                   src={caseStudy.video}
                   controls
@@ -121,6 +123,7 @@ function CaseStudy({ project }: { project: Project }) {
                   preload="metadata"
                   aria-label={t('caseStudy.video', { name: t(project.name) })}
                 />
+                </ExternalContent>
               ) : (
                 <img className="cs-laptop-fallback" src={project.logo} alt="" />
               )}

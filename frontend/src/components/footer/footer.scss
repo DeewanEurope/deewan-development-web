@@ -46,6 +46,15 @@
     line-height: 16px;
   }
 
+  &-impressum {
+    color: $off-white;
+    text-decoration: underline;
+
+    &:hover {
+      color: $off-white;
+    }
+  }
+
   &-socials {
     display: flex;
     align-items: center;

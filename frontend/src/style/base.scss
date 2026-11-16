@@ -65,3 +65,22 @@ h2,
 h3 {
   font-weight: 700;
 }
+
+// ---------- Accessibility (WCAG 2.2 AA) ----------
+// Skip link: hidden until it gets keyboard focus (2.4.1 Bypass Blocks).
+.dw-skip-link {
+  position: absolute;
+  inset-inline-start: 8px;
+  top: -100px;
+  z-index: 100000;
+  padding: 10px 16px;
+  background: #0d1b2a;
+  color: #ffffff;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: underline;
+
+  &:focus { top: 8px; }
+}
+// The main content takes focus after a page change; it needs no ring of its own.
+main:focus { outline: none; }

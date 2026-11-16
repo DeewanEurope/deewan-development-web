@@ -1,0 +1,20 @@
+.dw-privacy {
+  p {
+    margin: 0 0 12px;
+  }
+
+  ul {
+    padding-inline-start: 1.2em;
+    margin: 0 0 12px;
+  }
+
+  li {
+    margin-bottom: 4px;
+    line-height: 1.6;
+  }
+
+  &-lang {
+    font-size: 1.5rem !important;
+    margin-top: 48px !important;
+  }
+}

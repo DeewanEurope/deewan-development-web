@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { openConsentSettings } from '../consent/consentStore'
 import './footer.scss'
 
 const socials = [
@@ -48,6 +49,13 @@ function Footer() {
         <div className="dw-footer-legal">
           <p className="dw-footer-copyright">{t('footer.copyright')}</p>
           <p className="dw-footer-copyright">{t('footer.copyright2')}</p>
+          <p className="dw-footer-copyright">
+            <Link to="/impressum" className="dw-footer-impressum">{t('footer.impressum')}</Link>
+            {' · '}
+            <Link to="/datenschutz" className="dw-footer-impressum">{t('footer.privacy')}</Link>
+            {' · '}
+            <button type="button" className="dc-footer-link dw-footer-impressum" onClick={openConsentSettings}>{t('consent.settings')}</button>
+          </p>
         </div>
         <ul className="dw-footer-socials">
           {socials.map(({ label, href, icon }) => (

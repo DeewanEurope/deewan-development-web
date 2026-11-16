@@ -26,6 +26,8 @@
   "nav.closeMenu": "Close menu",
   "footer.homeLink": "Deewan – home",
   "footer.copyright": "Copyrights © 2026 Deewan Development.",
+  "footer.impressum": "Impressum / Legal notice",
+  "footer.privacy": "Privacy policy",
   "footer.copyright2": " All rights reserved. \n A brand of Deewan Europe GmbH, Germany.",
   "home.hero.title": "Empowering Your\n<em>Digital Future</em>",
   "home.hero.text": "Innovative web and mobile solutions tailored for your business. We bridge the gap between technical mastery and business precision.",
@@ -43,7 +45,7 @@
   "home.services.ux": "UI/UX\nDesign",
   "home.services.social": "Social\nMedia\nManagement",
   "home.services.marketing": "Digital\nMarketing",
-  "home.services.carousel": "Our core competencies",
+  "home.services.carousel": "Core competencies, slides",
   "home.services.page": "Show services page {{page}}",
   "home.portfolio.label": "Our Portfolio",
   "home.portfolio.title": "Ideas We Brought to Life",
@@ -283,5 +285,14 @@
   "contact.error": "Something went wrong. Please try again later.",
   "notFound.heading": "Page Not Found",
   "notFound.description": "The page you're looking for doesn't exist or may have been moved. Let's get you back on track.",
-  "notFound.back": "Back to Home"
+  "notFound.back": "Back to Home",
+  "consent.title": "Content from other companies",
+  "consent.text": "Some pages show project videos stored on Google servers (Google Firebase). If you allow this, Google receives your IP address, also in the USA. If you choose \"Only necessary\", the videos stay hidden. You can change your choice at any time under \"Cookie settings\" at the bottom of every page.",
+  "consent.only_necessary": "Only necessary",
+  "consent.allow": "Allow all",
+  "consent.placeholder": "This video comes from {{provider}}. If you load it, {{provider}} receives your IP address.",
+  "consent.load": "Load video",
+  "consent.settings": "Cookie settings",
+  "consent.privacy": "Privacy policy",
+  "a11y.skipToContent": "Skip to main content"
 }
