@@ -2,13 +2,13 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
 import en from './locales/en.json'
-//import ar from './locales/ar.json'
+import ar from './locales/ar.json'
 import de from './locales/de.json'
 
 // To add a language: add it here, add it to scripts/translate.ts, then run `npm run translate:<code>`
 export const LANGUAGES = [
   { code: 'en', label: 'English', short: 'EN', dir: 'ltr' },
-  //{ code: 'ar', label: 'العربية', short: 'AR', dir: 'rtl' },
+  { code: 'ar', label: 'العربية', short: 'AR', dir: 'rtl' },
   { code: 'de', label: 'Deutsch', short: 'DE', dir: 'ltr' },
 ] as const
 
@@ -38,7 +38,7 @@ const applyToDocument = (code: string) => {
 i18n.use(initReactI18next).init({
   resources: {
     en: { translation: en },
-  //  ar: { translation: ar },
+    ar: { translation: ar },
     de: { translation: de },
   },
   lng: readSavedLanguage(),

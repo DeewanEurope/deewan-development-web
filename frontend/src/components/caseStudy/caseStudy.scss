@@ -335,3 +335,8 @@ $card-width: 520px;
     }
   }
 }
+html[lang="ar"] {
+  .cs-arrow {
+    transform: scaleX(-1);
+  }
+}

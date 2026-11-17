@@ -147,7 +147,8 @@ function SocialMedia() {
             </figure>
           </div>
 
-          <div className="sm-controls">
+          {/* kept left-to-right in Arabic too: "previous" on the left, "next" on the right */}
+          <div className="sm-controls" dir="ltr">
             <button type="button" className="sm-arrow" aria-label={t('social.previous')} onClick={() => step(-1)}>
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M15 5 8 12l7 7" />
@@ -189,7 +190,8 @@ function SocialMedia() {
             <h3 className="sm-subtitle" data-reveal="up">
               {t('social.platforms')}
             </h3>
-            <ul className="sm-platforms">
+            {/* left-to-right in Arabic too, so each arrow and name keeps its place around the icon */}
+            <ul className="sm-platforms" dir="ltr">
               {project.platforms.map(({ name, href }, spot) => {
                 const icon = <img src={platformIcons[name]} alt="" />
                 return (

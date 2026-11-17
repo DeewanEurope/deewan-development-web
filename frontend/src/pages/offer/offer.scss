@@ -209,7 +209,7 @@ $art: '/assets/images/offer';
         width: 5px;
         height: 5px;
         border-radius: 50%;
-        background: $amber;
+        background: $amber;  
       }
     }
 
@@ -248,4 +248,8 @@ $art: '/assets/images/offer';
   font-size: 20px;
   letter-spacing: 0;
   text-transform: capitalize;
+}
+html[lang="ar"] .offer-item-text li::before {
+    right: -11px;
+    left: auto;
 }

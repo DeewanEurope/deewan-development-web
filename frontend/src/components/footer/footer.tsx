@@ -39,7 +39,6 @@ const socials = [
     label: 'Google Business Profile',
     href: 'https://share.google/DiaMGgLrENcQNhMxS',
     icon: (
-      // storefront with a scalloped awning and a "G" on the front, like the Business Profile logo
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path
           d="M4.5 3h15L21 8a2.25 2.25 0 0 1-4.5 0 2.25 2.25 0 0 1-4.5 0 2.25 2.25 0 0 1-4.5 0A2.25 2.25 0 0 1 3 8z"
