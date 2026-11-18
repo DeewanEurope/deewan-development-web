@@ -279,7 +279,19 @@
     "about.manager.skill3": "Academic Publishing",
     "about.manager.skill4": "Language Education",
     "about.manager.skill5": "Cultural Exchange",
-    "about.manager.skill6": "Educational Technology"
+    "about.manager.skill6": "Educational Technology",
+    "footer.region": "Region: {{region}}",
+    "footer.regionChange": "Change",
+    "region.eyebrow": "Welcome to Deewan",
+    "region.title": "Where are you joining us from?",
+    "region.subtitle": "Choose your region and we'll connect you with the Deewan team closest to you.",
+    "region.europe": "Europe",
+    "region.europeHint": "Our team in Germany",
+    "region.jordan": "Other parts of the world",
+    "region.jordanHint": "Our team in Amman, Jordan",
+    "region.note": "Our services are the same in both regions — only your contact team changes.",
+    "region.language": "Language",
+    "contact.locationValueEurope": "Robert-Bosch-Straße 110, 74081 Heilbronn, Germany"
   },
   "de": {
     "meta.title.home": "Deewan Development",
@@ -560,6 +572,18 @@
     "about.manager.skill3": "Academic Publishing",
     "about.manager.skill4": "Language Education",
     "about.manager.skill5": "Cultural Exchange",
-    "about.manager.skill6": "Educational Technology"
+    "about.manager.skill6": "Educational Technology",
+    "footer.region": "Region: {{region}}",
+    "footer.regionChange": "Change",
+    "region.eyebrow": "Welcome to Deewan",
+    "region.title": "Where are you joining us from?",
+    "region.subtitle": "Choose your region and we'll connect you with the Deewan team closest to you.",
+    "region.europe": "Europe",
+    "region.europeHint": "Our team in Germany",
+    "region.jordan": "Other parts of the world",
+    "region.jordanHint": "Our team in Amman, Jordan",
+    "region.note": "Our services are the same in both regions — only your contact team changes.",
+    "region.language": "Language",
+    "contact.locationValueEurope": "Robert-Bosch-Straße 110, 74081 Heilbronn, Germany"
   }
 }

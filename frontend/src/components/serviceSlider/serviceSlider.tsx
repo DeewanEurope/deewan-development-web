@@ -1,10 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
-<<<<<<< Updated upstream
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
-=======
 import RegionLink from '../regionLink/regionLink'
->>>>>>> Stashed changes
 import RoughArrow from '../roughArrow/roughArrow'
 import './serviceSlider.scss'
 
@@ -73,13 +69,8 @@ function ServiceSlider({ cards }: ServiceSliderProps) {
             const onPage = Math.floor(index / perPage) === page
 
             return (
-<<<<<<< Updated upstream
               <li key={title} className="dw-slider-slide" inert={!onPage}>
-                <Link to={to} className="dw-slider-card">
-=======
-              <li key={title.join(' ')} className="dw-slider-slide" inert={!onPage}>
                 <RegionLink to={to} className="dw-slider-card">
->>>>>>> Stashed changes
                   {/* the amber outline-only twin sits behind the filled face */}
                   <span className="dw-slider-outline" aria-hidden="true" />
                   <span className="dw-slider-face">

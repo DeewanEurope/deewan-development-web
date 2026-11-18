@@ -1,10 +1,6 @@
 import { useRef, useState, type CSSProperties } from 'react'
-<<<<<<< Updated upstream
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
-=======
 import RegionLink from '../regionLink/regionLink'
->>>>>>> Stashed changes
 import { gsap, useGSAP } from '../../lib/gsap'
 import './serviceRing.scss'
 
@@ -131,15 +127,9 @@ function ServiceRing({ services, interval = 3.2 }: ServiceRingProps) {
               >
                 <img src={image} alt="" loading="lazy" />
                 <div className="dw-ring-card-text">
-<<<<<<< Updated upstream
                   <h3>{t(title)}</h3>
-                  <Link to={to} className="dw-ring-more" tabIndex={i === active ? 0 : -1}>
-                    <span>{t('common.viewMore')}</span>
-=======
-                  <h3>{title}</h3>
                   <RegionLink to={to} className="dw-ring-more" tabIndex={i === active ? 0 : -1}>
-                    <span>View More</span>
->>>>>>> Stashed changes
+                    <span>{t('common.viewMore')}</span>
                     <span className="dw-ring-arrow" aria-hidden="true">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <circle cx="12" cy="12" r="9" />

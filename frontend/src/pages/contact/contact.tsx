@@ -33,19 +33,11 @@ const icons: Record<string, ReactNode> = {
   ),
 }
 
-<<<<<<< Updated upstream
-// label and plain values are translation keys
-const details = [
-  { icon: 'email', label: 'contact.email', value: 'project@deewandevelopment.com', href: 'mailto:project@deewandevelopment.com' },
-  { icon: 'phone', label: 'contact.phone', value: '(962) 7-7820-2083', href: 'tel:+962778202083' },
-  { icon: 'location', label: 'contact.location', value: 'contact.locationValue', translate: true },
-=======
-// the email, phone and address depend on the visitor's region (see data/region.ts)
+// label and the location are translation keys; the email and phone depend on the visitor's region (see data/region.ts)
 const getDetails = ({ email, phoneDisplay, phoneHref, location }: RegionContent) => [
-  { icon: 'email', label: 'Email', value: email, href: `mailto:${email}` },
-  { icon: 'phone', label: 'Phone Number', value: phoneDisplay, href: `tel:${phoneHref}` },
-  { icon: 'location', label: 'Location', value: location },
->>>>>>> Stashed changes
+  { icon: 'email', label: 'contact.email', value: email, href: `mailto:${email}` },
+  { icon: 'phone', label: 'contact.phone', value: phoneDisplay, href: `tel:${phoneHref}` },
+  { icon: 'location', label: 'contact.location', value: location, translate: true },
 ]
 
 function Contact() {

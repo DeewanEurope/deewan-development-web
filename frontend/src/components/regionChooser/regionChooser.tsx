@@ -1,6 +1,8 @@
 import { useEffect, useRef, type ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Home from '../../pages/home/home'
+import { LANGUAGES } from '../../i18n'
 import { regionChooser, regionContent } from '../../data/region'
 import { REGIONS, type Region } from '../../region/region'
 import './regionChooser.scss'
@@ -37,6 +39,7 @@ const icons: Record<Region, ReactNode> = {
 // Shown on "/" and on links without a region (e.g. "/offer"). The home page stays visible behind the
 // overlay; picking a region continues to the same page under /european/... or /jordan/...
 function RegionChooser() {
+  const { t, i18n } = useTranslation()
   const navigate = useNavigate()
   const { pathname, search, hash } = useLocation()
   const dialogRef = useRef<HTMLDivElement>(null)
@@ -95,17 +98,31 @@ function RegionChooser() {
             <span className="dw-region-globe" aria-hidden="true">
               {globe}
             </span>
-            <div>
-              <p className="dw-region-eyebrow">{regionChooser.eyebrow}</p>
+            <div className="dw-region-heading">
+              <p className="dw-region-eyebrow">{t(regionChooser.eyebrow)}</p>
               <h2 id="dw-region-title" className="dw-region-title">
-                {regionChooser.title}
+                {t(regionChooser.title)}
               </h2>
+            </div>
+            {/* pick the language first if the page is not in yours */}
+            <div className="dw-region-langs" role="group" aria-label={t('region.language')}>
+              {LANGUAGES.map(({ code, short }) => (
+                <button
+                  key={code}
+                  type="button"
+                  className={i18n.language === code ? 'is-active' : undefined}
+                  aria-pressed={i18n.language === code}
+                  onClick={() => i18n.changeLanguage(code)}
+                >
+                  {short}
+                </button>
+              ))}
             </div>
           </header>
 
           <div className="dw-region-body">
             <p id="dw-region-subtitle" className="dw-region-subtitle">
-              {regionChooser.subtitle}
+              {t(regionChooser.subtitle)}
             </p>
 
             <div className="dw-region-options">
@@ -113,8 +130,8 @@ function RegionChooser() {
                 <button key={region} type="button" className="dw-region-option" onClick={() => choose(region)}>
                   <span className="dw-region-icon">{icons[region]}</span>
                   <span className="dw-region-text">
-                    <span className="dw-region-label">{regionContent[region].label}</span>
-                    <span className="dw-region-hint">{regionContent[region].hint}</span>
+                    <span className="dw-region-label">{t(regionContent[region].label)}</span>
+                    <span className="dw-region-hint">{t(regionContent[region].hint)}</span>
                   </span>
                   <svg className="dw-region-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M5 12h14M13 6l6 6-6 6" />
@@ -123,7 +140,7 @@ function RegionChooser() {
               ))}
             </div>
 
-            <p className="dw-region-note">{regionChooser.note}</p>
+            <p className="dw-region-note">{t(regionChooser.note)}</p>
           </div>
         </div>
       </div>

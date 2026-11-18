@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import RegionLink from "../regionLink/regionLink";
 import { CONSENT_OPEN_EVENT, setConsent, useConsent } from "./consentStore";
 import "./consent.css";
 
@@ -26,7 +27,7 @@ export default function ConsentBanner() {
       <p id="dc-banner-title" className="dc-banner-title">{t("consent.title")}</p>
       <p className="dc-banner-text">
         {t("consent.text")}{" "}
-        <a href="/datenschutz" className="dc-banner-link">{t("consent.privacy")}</a>
+        <RegionLink to="/datenschutz" className="dc-banner-link">{t("consent.privacy")}</RegionLink>
       </p>
       <div className="dc-banner-actions">
         <button type="button" className="dc-btn" onClick={() => decide("denied")}>

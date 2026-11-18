@@ -50,6 +50,46 @@
     }
   }
 
+  &-heading {
+    flex: 1;
+    min-width: 0;
+  }
+
+  // EN / AR / DE
+  &-langs {
+    flex: none;
+    display: flex;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 999px;
+    background: rgba($primary-color, 0.14);
+
+    button {
+      padding: 4px 10px;
+      color: $primary-color;
+      font-family: $font-sans;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+      @include focus-ring($primary-color);
+
+      &:hover {
+        background: rgba($white, 0.5);
+      }
+
+      &.is-active {
+        color: $white;
+        background: $primary-color;
+      }
+    }
+  }
+
   &-eyebrow {
     margin: 0 0 4px;
     @include eyebrow(3px);
@@ -87,7 +127,7 @@
     width: 100%;
     padding: 16px 20px;
     color: $primary-color;
-    text-align: left;
+    text-align: start;
     border: 2px solid $primary-color;
     border-radius: 5px 40px;
     background: $white;
@@ -184,6 +224,7 @@
     place-items: start center;
 
     &-head {
+      flex-wrap: wrap;
       padding: 18px 20px;
     }
 
@@ -231,4 +272,14 @@
   .dw-region-arrow {
     transition: none;
   }
+}
+
+// Arabic: the arrows point the other way
+:root[dir='rtl'] .dw-region-arrow {
+  scale: -1 1;
+}
+
+:root[dir='rtl'] .dw-region-option:hover .dw-region-arrow,
+:root[dir='rtl'] .dw-region-option:focus-visible .dw-region-arrow {
+  translate: -4px 0;
 }
