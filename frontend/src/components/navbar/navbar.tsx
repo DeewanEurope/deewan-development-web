@@ -1,7 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import type { KeyboardEvent } from 'react'
+<<<<<<< Updated upstream
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
+=======
+import { useLocation } from 'react-router-dom'
+import RegionLink from '../regionLink/regionLink'
+import { stripRegion } from '../../region/region'
+>>>>>>> Stashed changes
 import Button from '../button/button'
 import LanguageSwitcher from '../languageSwitcher/languageSwitcher'
 import Scribble from '../scribble/scribble'
@@ -32,8 +38,13 @@ const navItems: NavItem[] = [
 const DROP_CLOSE_DELAY = 180
 
 function Navbar() {
+<<<<<<< Updated upstream
   const { t } = useTranslation()
   const { pathname } = useLocation()
+=======
+  const { pathname: fullPath } = useLocation()
+  const pathname = stripRegion(fullPath)
+>>>>>>> Stashed changes
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isDropOpen, setIsDropOpen] = useState(false)
@@ -158,9 +169,15 @@ function Navbar() {
     <>
       <header className={`dw-header${isScrolled ? ' is-scrolled' : ''}`}>
         <div className="dw-header-bar dw-container">
+<<<<<<< Updated upstream
           <Link to="/" className="dw-header-logo" onClick={closeMenu}>
             <img src="/assets/images/logos/logo.png" alt={t('common.brand')} />
           </Link>
+=======
+          <RegionLink to="/" className="dw-header-logo" onClick={closeMenu}>
+            <img src="/assets/images/logos/logo.png" alt="Deewan for Digital Learning Development" />
+          </RegionLink>
+>>>>>>> Stashed changes
 
           <nav className="dw-header-nav" aria-label={t('nav.main')}>
             <ul className="dw-header-list">
@@ -170,13 +187,18 @@ function Navbar() {
                 if (!children) {
                   return (
                     <li key={to}>
-                      <Link
+                      <RegionLink
                         to={to}
                         className={`dw-header-link${isActive ? ' is-active' : ''}`}
                         aria-current={isActive ? 'page' : undefined}
                       >
+<<<<<<< Updated upstream
                         {faces(t(label), index)}
                       </Link>
+=======
+                        {faces(label, index)}
+                      </RegionLink>
+>>>>>>> Stashed changes
                     </li>
                   )
                 }
@@ -208,7 +230,7 @@ function Navbar() {
                       {children.map((child, childIndex) => (
                         <li key={child.label} style={{ ['--i' as string]: childIndex }}>
                           {child.to ? (
-                            <Link
+                            <RegionLink
                               to={child.to}
                               className={`dw-drop-link${pathname === child.to ? ' is-current' : ''}`}
                               aria-current={pathname === child.to ? 'page' : undefined}
@@ -216,8 +238,13 @@ function Navbar() {
                               onClick={() => setIsDropOpen(false)}
                             >
                               <span className="dw-drop-dot" aria-hidden="true" />
+<<<<<<< Updated upstream
                               {t(child.label)}
                             </Link>
+=======
+                              {child.label}
+                            </RegionLink>
+>>>>>>> Stashed changes
                           ) : (
                             <span className="dw-drop-link is-soon" aria-disabled="true">
                               <span className="dw-drop-dot" aria-hidden="true" />
@@ -269,15 +296,20 @@ function Navbar() {
                     {children.map((child, childIndex) => (
                       <li key={child.label} style={{ ['--i' as string]: childIndex }}>
                         {child.to ? (
-                          <Link
+                          <RegionLink
                             to={child.to}
                             className={pathname === child.to ? 'is-active' : undefined}
                             onClick={closeMenu}
                             tabIndex={isMenuOpen ? 0 : -1}
                           >
                             <span className="dw-drop-dot" aria-hidden="true" />
+<<<<<<< Updated upstream
                             {t(child.label)}
                           </Link>
+=======
+                            {child.label}
+                          </RegionLink>
+>>>>>>> Stashed changes
                         ) : (
                           <span className="is-soon" aria-disabled="true">
                             <span className="dw-drop-dot" aria-hidden="true" />
@@ -290,14 +322,19 @@ function Navbar() {
                   </ul>
                 </>
               ) : (
-                <Link
+                <RegionLink
                   to={to}
                   className={index === activeIndex ? 'is-active' : undefined}
                   onClick={closeMenu}
                   tabIndex={isMenuOpen ? 0 : -1}
                 >
+<<<<<<< Updated upstream
                   {t(label)}
                 </Link>
+=======
+                  {label}
+                </RegionLink>
+>>>>>>> Stashed changes
               )}
             </li>
           ))}

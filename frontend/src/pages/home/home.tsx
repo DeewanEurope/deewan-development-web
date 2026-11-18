@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import Button from '../../components/button/button'
 import HeroArt from '../../components/heroArt/heroArt'
@@ -110,7 +109,7 @@ function Home() {
             {t(homePortfolio.description)}
           </p>
 
-          <Link to={project.to} className="home-portfolio-project" data-reveal="zoom">
+          <RegionLink to={project.to} className="home-portfolio-project" data-reveal="zoom">
             <span className="home-laptop">
               <img className="home-laptop-frame" src={project.laptop} alt="" loading="lazy" />
               <img
@@ -124,7 +123,7 @@ function Home() {
               <span className="home-portfolio-name">{t(project.name)}</span>
               <RoughArrow size="large" />
             </span>
-          </Link>
+          </RegionLink>
         </div>
       </section>
     </div>

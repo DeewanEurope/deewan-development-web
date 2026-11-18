@@ -1,5 +1,5 @@
 import type { MouseEventHandler, ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import RegionLink from '../regionLink/regionLink'
 import './button.scss'
 
 type ButtonProps = {
@@ -26,9 +26,9 @@ function Button({
 
   if (to) {
     return (
-      <Link to={to} className={classes} onClick={onClick}>
+      <RegionLink to={to} className={classes} onClick={onClick}>
         {label}
-      </Link>
+      </RegionLink>
     )
   }
 

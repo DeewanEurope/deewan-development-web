@@ -38,6 +38,26 @@
     text-align: center;
   }
 
+  // reopens the region picker
+  &-region {
+    justify-self: center;
+    padding: 2px 0;
+    color: $blue-light-one;
+    font-size: 12px;
+    line-height: 16px;
+    border: 0;
+    background: none;
+    @include focus-ring($white);
+
+    span {
+      text-decoration: underline;
+    }
+
+    &:hover {
+      color: $white;
+    }
+  }
+
   &-copyright {
     margin: 0;
     color: $off-white;

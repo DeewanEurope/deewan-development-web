@@ -5,6 +5,8 @@ import LottieGlobe from '../../components/lottieGlobe/lottieGlobe'
 import SplitWords from '../../components/splitWords/splitWords'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
 import { offers } from '../../data/offer'
+import { regionContent, type RegionContent } from '../../data/region'
+import { useRegion } from '../../region/region'
 import './contact.scss'
 
 // empty in dev: requests go to /api on the Vite server, which proxies them to the backend
@@ -31,11 +33,19 @@ const icons: Record<string, ReactNode> = {
   ),
 }
 
+<<<<<<< Updated upstream
 // label and plain values are translation keys
 const details = [
   { icon: 'email', label: 'contact.email', value: 'project@deewandevelopment.com', href: 'mailto:project@deewandevelopment.com' },
   { icon: 'phone', label: 'contact.phone', value: '(962) 7-7820-2083', href: 'tel:+962778202083' },
   { icon: 'location', label: 'contact.location', value: 'contact.locationValue', translate: true },
+=======
+// the email, phone and address depend on the visitor's region (see data/region.ts)
+const getDetails = ({ email, phoneDisplay, phoneHref, location }: RegionContent) => [
+  { icon: 'email', label: 'Email', value: email, href: `mailto:${email}` },
+  { icon: 'phone', label: 'Phone Number', value: phoneDisplay, href: `tel:${phoneHref}` },
+  { icon: 'location', label: 'Location', value: location },
+>>>>>>> Stashed changes
 ]
 
 function Contact() {
@@ -43,6 +53,8 @@ function Contact() {
   const pageRef = useRef<HTMLDivElement>(null)
   const [status, setStatus] = useState<Status>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const region = useRegion()
+  const details = getDetails(regionContent[region])
   useScrollReveal(pageRef)
 
   useEffect(() => {
@@ -66,6 +78,8 @@ function Contact() {
           email: data.get('email'),
           service: data.get('service'),
           message: data.get('message'),
+          // the server sends European enquiries to the European inbox
+          region,
         }),
       })
       const result = await response.json().catch(() => ({}))

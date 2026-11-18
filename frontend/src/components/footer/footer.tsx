@@ -1,6 +1,13 @@
+<<<<<<< Updated upstream
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { openConsentSettings } from '../consent/consentStore'
+=======
+import { Link, useLocation } from 'react-router-dom'
+import RegionLink from '../regionLink/regionLink'
+import { regionContent } from '../../data/region'
+import { regionOf, stripRegion } from '../../region/region'
+>>>>>>> Stashed changes
 import './footer.scss'
 
 const socials = [
@@ -53,11 +60,17 @@ const socials = [
 ]
 
 function Footer() {
+<<<<<<< Updated upstream
   const { t } = useTranslation()
+=======
+  const { pathname, search, hash } = useLocation()
+  const region = regionOf(pathname)
+>>>>>>> Stashed changes
 
   return (
     <footer className="dw-footer">
       <div className="dw-footer-bar dw-container">
+<<<<<<< Updated upstream
         <Link to="/" className="dw-footer-logo" aria-label={t('footer.homeLink')}>
           <img src="/assets/images/logos/logoWhite.webp" alt={t('common.brand')} />
         </Link>
@@ -71,6 +84,21 @@ function Footer() {
             {' · '}
             <button type="button" className="dc-footer-link dw-footer-impressum" onClick={openConsentSettings}>{t('consent.settings')}</button>
           </p>
+=======
+        <RegionLink to="/" className="dw-footer-logo" aria-label="Deewan – home">
+          <img src="/assets/images/logos/logoWhite.webp" alt="Deewan for Digital Learning Development" />
+        </RegionLink>
+
+        <div className="dw-footer-legal">
+          <p className="dw-footer-copyright">© 2026 Deewan for Digital Learning Development</p>
+          <p className="dw-footer-copyright">A brand of Deewan Europe GmbH, Germany.</p>
+          {region && (
+            // the same page without its region prefix: the chooser opens again and returns here
+            <Link to={`${stripRegion(pathname)}${search}${hash}`} className="dw-footer-region">
+              Region: {regionContent[region].label} · <span>Change</span>
+            </Link>
+          )}
+>>>>>>> Stashed changes
         </div>
         <ul className="dw-footer-socials">
           {socials.map(({ label, href, icon }) => (

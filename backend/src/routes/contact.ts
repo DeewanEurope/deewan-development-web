@@ -6,8 +6,13 @@ const router = Router();
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// Enquiries sent from the European side of the site (/european/...) go to the European inbox.
+const DEFAULT_RECIPIENT = "project@deewandevelopment.com";
+const DEFAULT_EUROPE_RECIPIENT = "admin@deewan.eu";
+
 router.post("/", async (req, res) => {
-  const { fullName, email, service, message } = req.body ?? {};
+  const { fullName, email, service, message, region } = req.body ?? {};
+  const isEurope = region === "european";
 
   if (
     typeof fullName !== "string" ||
@@ -41,9 +46,11 @@ router.post("/", async (req, res) => {
   try {
     const { error } = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL ?? "onboarding@resend.dev",
-      to: process.env.CONTACT_RECIPIENT_EMAIL ?? "project@deewandevelopment.com",
+      to: isEurope
+        ? (process.env.EUROPE_RECIPIENT_EMAIL ?? DEFAULT_EUROPE_RECIPIENT)
+        : (process.env.CONTACT_RECIPIENT_EMAIL ?? DEFAULT_RECIPIENT),
       replyTo: notificationData.email,
-      subject: `New inquiry from ${notificationData.fullName}`,
+      subject: `${isEurope ? "[Europe] " : ""}New inquiry from ${notificationData.fullName}`,
       html: contactNotificationHtml(notificationData),
       text: contactNotificationText(notificationData),
     });
