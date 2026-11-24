@@ -305,5 +305,20 @@
   "consent.load": "تحميل الفيديو",
   "consent.settings": "إعدادات ملفات تعريف الارتباط",
   "consent.privacy": "سياسة الخصوصية",
-  "a11y.skipToContent": "تخطَّ إلى المحتوى الرئيسي"
+  "a11y.skipToContent": "تخطَّ إلى المحتوى الرئيسي",
+  "meta.title.links": "الروابط | Deewan Development",
+  "links.tagline": "مواقع إلكترونية وتطبيقات وتصميم واجهات وإدارة وسائل التواصل — تابعونا في كل مكان.",
+  "links.instagram": "إنستغرام",
+  "links.instagramHint": "أحدث منشوراتنا ومقاطعنا وقصصنا",
+  "links.facebook": "فيسبوك",
+  "links.facebookHint": "أخبار وتحديثات من فريقنا",
+  "links.youtube": "يوتيوب",
+  "links.youtubeHint": "شاهد مقاطع الفيديو الخاصة بنا",
+  "links.linkedin": "لينكدإن",
+  "links.linkedinHint": "الملف التعريفي لشركتنا",
+  "links.google": "ملف النشاط التجاري على Google",
+  "links.googleHint": "التقييمات ومعلومات النشاط",
+  "links.maps": "موقعنا على الخريطة",
+  "links.mapsHint": "الاتجاهات على خرائط Google",
+  "links.website": "زوروا موقعنا"
 }

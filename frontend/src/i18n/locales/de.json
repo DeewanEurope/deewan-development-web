@@ -304,5 +304,20 @@
   "consent.load": "Video laden",
   "consent.settings": "Cookie-Einstellungen",
   "consent.privacy": "Datenschutzerklärung",
-  "a11y.skipToContent": "Zum Hauptinhalt springen"
+  "a11y.skipToContent": "Zum Hauptinhalt springen",
+  "meta.title.links": "Links | Deewan Development",
+  "links.tagline": "Websites, Apps, UI/UX und Social Media – hier finden Sie uns überall.",
+  "links.instagram": "Instagram",
+  "links.instagramHint": "Unsere neuesten Beiträge, Reels und Stories",
+  "links.facebook": "Facebook",
+  "links.facebookHint": "Neuigkeiten aus unserem Team",
+  "links.youtube": "YouTube",
+  "links.youtubeHint": "Sehen Sie sich unsere Videos an",
+  "links.linkedin": "LinkedIn",
+  "links.linkedinHint": "Unser Unternehmensprofil",
+  "links.google": "Google-Unternehmensprofil",
+  "links.googleHint": "Bewertungen und Unternehmensinfos",
+  "links.maps": "So finden Sie uns",
+  "links.mapsHint": "Route in Google Maps",
+  "links.website": "Zu unserer Website"
 }

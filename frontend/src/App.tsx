@@ -10,6 +10,7 @@ import Contact from './pages/contact/contact'
 import NotFoundPage from './pages/notFound/notFound'
 import Impressum from './pages/impressum/impressum'
 import Privacy from './pages/privacy/privacy'
+import Links from './pages/links/links'
 import { isRegion } from './region/region'
 
 // All pages live under /european/... and /jordan/...
@@ -36,6 +37,8 @@ function RegionRoutes() {
 function App() {
   return (
     <Routes>
+      {/* link-in-bio page for the social profiles: no region, navbar or footer */}
+      <Route path="/links" element={<Links />} />
       <Route element={<Layout />}>
         {/* the root and old links without a region (e.g. /offer): ask the visitor to pick one */}
         <Route path="/" element={<RegionChooser />} />

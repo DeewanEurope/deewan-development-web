@@ -291,7 +291,22 @@
     "region.jordanHint": "Our team in Amman, Jordan",
     "region.note": "Our services are the same in both regions — only your contact team changes.",
     "region.language": "Language",
-    "contact.locationValueEurope": "Robert-Bosch-Straße 110, 74081 Heilbronn, Germany"
+    "contact.locationValueEurope": "Robert-Bosch-Straße 110, 74081 Heilbronn, Germany",
+    "meta.title.links": "Links | Deewan Development",
+    "links.tagline": "Websites, apps, UI/UX and social media — find us everywhere.",
+    "links.instagram": "Instagram",
+    "links.instagramHint": "Our latest posts, reels and stories",
+    "links.facebook": "Facebook",
+    "links.facebookHint": "News and updates from our team",
+    "links.youtube": "YouTube",
+    "links.youtubeHint": "Watch our videos",
+    "links.linkedin": "LinkedIn",
+    "links.linkedinHint": "Our company profile",
+    "links.google": "Google Business Profile",
+    "links.googleHint": "Reviews and business info",
+    "links.maps": "Find us on the map",
+    "links.mapsHint": "Directions on Google Maps",
+    "links.website": "Visit our website"
   },
   "de": {
     "meta.title.home": "Deewan Development",
@@ -584,6 +599,21 @@
     "region.jordanHint": "Our team in Amman, Jordan",
     "region.note": "Our services are the same in both regions — only your contact team changes.",
     "region.language": "Language",
-    "contact.locationValueEurope": "Robert-Bosch-Straße 110, 74081 Heilbronn, Germany"
+    "contact.locationValueEurope": "Robert-Bosch-Straße 110, 74081 Heilbronn, Germany",
+    "meta.title.links": "Links | Deewan Development",
+    "links.tagline": "Websites, apps, UI/UX and social media — find us everywhere.",
+    "links.instagram": "Instagram",
+    "links.instagramHint": "Our latest posts, reels and stories",
+    "links.facebook": "Facebook",
+    "links.facebookHint": "News and updates from our team",
+    "links.youtube": "YouTube",
+    "links.youtubeHint": "Watch our videos",
+    "links.linkedin": "LinkedIn",
+    "links.linkedinHint": "Our company profile",
+    "links.google": "Google Business Profile",
+    "links.googleHint": "Reviews and business info",
+    "links.maps": "Find us on the map",
+    "links.mapsHint": "Directions on Google Maps",
+    "links.website": "Visit our website"
   }
 }
